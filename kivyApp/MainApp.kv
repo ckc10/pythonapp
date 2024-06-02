@@ -1,0 +1,92 @@
+<MainLayout>:
+    orientation: 'horizontal'
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.5
+
+        Label:
+            text: 'CALL'
+            font_size: '20sp'
+            bold: True
+            size_hint_y: None
+            height: '40dp'
+        Button:
+            text: 'Buy'
+            background_color: 0, 1, 0, 1
+            on_press: app.send_post_request('Buy_CE', 'response_label_ce', 'response_label_pe')
+        Button:
+            text: 'SL'
+            background_color: 1, 0, 0, 1
+            on_press: app.send_post_request('Sell_CE', 'response_label_ce', 'response_label_pe')
+        Button:
+            text: 'S1'
+            background_color: 1, 0.5, 0, 1
+            on_press: app.send_post_request('CE_Sell_1', 'response_label_ce', 'response_label_pe')
+        Button:
+            text: 'S2'
+            background_color: 1, 0.5, 0, 1
+            on_press: app.send_post_request('CE_Sell_2', 'response_label_ce', 'response_label_pe')
+        Button:
+            text: 'S3'
+            background_color: 1, 0.5, 0, 1
+            on_press: app.send_post_request('CE_Sell_3', 'response_label_ce', 'response_label_pe')
+        Button:
+            text: 'EXIT'
+            background_color: 0, 0, 1, 1
+            on_press: app.send_post_request('CE_Exit', 'response_label_ce', 'response_label_pe')
+        Button:
+            text: 'U.Exit'
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: app.send_post_request('UN_Exit', 'response_label_ce', 'response_label_pe')
+        Label:
+            id: response_label_ce
+            text: ''
+            color: 0, 0, 1, 1
+            size_hint_y: None
+            height: '100dp'
+            text_size: self.width, None
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.5
+        Label:
+            text: 'PUT'
+            font_size: '20sp'
+            bold: True
+            size_hint_y: None
+            height: '40dp'
+        Button:
+            text: 'Buy'
+            background_color: 0, 1, 0, 1
+            on_press: app.send_post_request('Buy_PE', 'response_label_pe', 'response_label_ce')
+        Button:
+            text: 'SL'
+            background_color: 1, 0, 0, 1
+            on_press: app.send_post_request('Sell_PE', 'response_label_pe', 'response_label_ce')
+        Button:
+            text: 'S1'
+            background_color: 1, 0.5, 0, 1
+            on_press: app.send_post_request('PE_Sell_1', 'response_label_pe', 'response_label_ce')
+        Button:
+            text: 'S2'
+            background_color: 1, 0.5, 0, 1
+            on_press: app.send_post_request('PE_Sell_2', 'response_label_pe', 'response_label_ce')
+        Button:
+            text: 'S3'
+            background_color: 1, 0.5, 0, 1
+            on_press: app.send_post_request('PE_Sell_3', 'response_label_pe', 'response_label_ce')
+        Button:
+            text: 'EXIT'
+            background_color: 0, 0, 1, 1
+            on_press: app.send_post_request('PE_Exit', 'response_label_pe', 'response_label_ce')
+        Button:
+            text: 'U.Exit'
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: app.send_post_request('UN_Exit', 'response_label_pe', 'response_label_ce')
+        Label:
+            id: response_label_pe
+            text: ''
+            color: 0, 0, 1, 1
+            size_hint_y: None
+            height: '100dp'
+            text_size: self.width, None
