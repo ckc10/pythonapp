@@ -28,7 +28,7 @@ def send_post_request(action, response_label_to_show, response_label_to_hide):
 
     # Update the label with the response message
     response_label_to_show.config(text=wrapped_response)
-    response_label_to_show.grid(row=4, column=0, columnspan=5, padx=10, pady=10)
+    response_label_to_show.grid(row=5, column=0, columnspan=5, padx=10, pady=10)
 
     # Hide the other response label
     response_label_to_hide.config(text="")
@@ -90,6 +90,12 @@ button_exit_ce.grid(row=3, column=1, padx=10, pady=10)
 button_u_exit_ce = tk.Button(left_frame, text="U.Exit", command=lambda: send_post_request("UN_Exit", response_label_ce, response_label_pe), bg="grey")
 button_u_exit_ce.grid(row=3, column=3, padx=10, pady=10)
 
+# # Reset button
+# button_reset_ce = tk.Button(left_frame, text="Reset CE", command=lambda: send_post_request("UN_Exit", response_label_ce, response_label_pe), bg="grey")
+# button_reset_ce.grid(row=4, column=2, padx=10, pady=10)
+
+## PUT side buttons
+
 # First line: Buy, Sell (Right Frame)
 button_buy_pe = tk.Button(right_frame, text="Buy", command=lambda: send_post_request("Buy_PE", response_label_pe, response_label_ce), bg="green")
 button_buy_pe.grid(row=1, column=1, padx=10, pady=10)
@@ -114,5 +120,7 @@ button_exit_pe.grid(row=3, column=1, padx=10, pady=10)
 button_u_exit_pe = tk.Button(right_frame, text="U.Exit", command=lambda: send_post_request("UN_Exit", response_label_pe, response_label_ce), bg="grey")
 button_u_exit_pe.grid(row=3, column=3, padx=10, pady=10)
 
+# button_reset_pe = tk.Button(right_frame, text="Reset PE", command=lambda: send_post_request("UN_Exit", response_label_ce, response_label_pe), bg="grey")
+# button_reset_pe.grid(row=4, column=2, padx=10, pady=10)
 # Run the application
 root.mainloop()
