@@ -10,7 +10,7 @@ WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 # Function to send POST request and update the label with the response
 def send_post_request(action):
     data = {
-        "auth-token": "f18769ad-818c-41c6-929d-7f1608730000",
+        "auth-token": "36c8ee23-5db6-48b8-9584-6fa34e098da0",
         "key": action,
         "value": "1"
     }
@@ -40,20 +40,34 @@ def reset_all():
                "Buy_PE", "Sell_PE", "PE_Sell_1", "PE_Sell_2", "PE_Sell_3", "PE_Exit","PE_Lot","UN_Exit"]
     for action in actions:
         send_post_request_reset(action)
-    response_label_ce.config(text="")
-    response_label_pe.config(text="")
+    
 
 # Function to send POST request with value 0 for reset
 def send_post_request_reset(action):
     data = {
-        "auth-token": "f18769ad-818c-41c6-929d-7f1608730000",
+        "auth-token": "36c8ee23-5db6-48b8-9584-6fa34e098da0",
         "key": action,
         "value": "0"
     }
     try:
         response = requests.post(WEBHOOK_URL, json=data)
+        if response.status_code == 200:
+            response_message = f"Reseted all buttons"
+        else:
+            response_message = f"Failed: {action} with status code {response.status_code}"
     except Exception as e:
-        pass
+        response_message = f"Exception: {e}"
+
+    # Wrap the response message to fit the UI window
+    wrapped_response = "\n".join(textwrap.wrap(response_message, width=50))
+
+    # Update the label with the response message based on the button clicked
+    if "CE" in action:
+        response_label_ce.config(text=wrapped_response)
+        response_label_pe.config(text="")
+    else:
+        response_label_pe.config(text=wrapped_response)
+        response_label_ce.config(text="")
 
 # Create the main window
 root = tk.Tk()
