@@ -60,7 +60,7 @@ root = tk.Tk()
 root.title("BNK-Client-60")
 
 window_width = 400
-window_height = 250
+window_height = 300
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x_coordinate = (screen_width - window_width) // 2
@@ -77,9 +77,23 @@ right_frame.pack(side="right", fill="both", expand=True)
 separator = ttk.Separator(root, orient='vertical')
 separator.pack(side="left", fill="y", padx=5)
 
+# Add static labels
+label_put = tk.Label(right_frame, text="PUT", font=("Arial", 14, "bold"))
+label_put.grid(row=0, column=3, columnspan=6, pady=10)
+
+label_call = tk.Label(left_frame, text="CALL", font=("Arial", 14, "bold"))
+label_call.grid(row=0, column=0, columnspan=4, pady=10)
+
+# Reset button
+button_reset = tk.Button(root, text="Reset", command=reset_all, bg="grey")
+button_reset.place(relx=0.5, rely=0.05, anchor="center")
+
 # First line: Buy, Sell
 button_buy = tk.Button(left_frame, text="Buy", command=lambda: send_post_request("Buy_CE"), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
+
+button_add_ce = tk.Button(left_frame, text="+1", command=lambda: send_post_request("Buy_CE"), bg="yellow")
+button_add_ce.grid(row=1, column=2, padx=10, pady=10)
 
 button_sell = tk.Button(left_frame, text="SL", command=lambda: send_post_request("Sell_CE"), bg="red")
 button_sell.grid(row=1, column=3, padx=10, pady=10)
@@ -96,7 +110,7 @@ button_s3.grid(row=2, column=3, padx=10, pady=10)
 
 # Third line: EXIT
 button_exit = tk.Button(left_frame, text="EXIT", command=lambda: send_post_request("CE_Exit"), bg="blue")
-button_exit.grid(row=3, column=1, padx=10, pady=10)
+button_exit.grid(row=3, column=2, padx=10, pady=10)
 
 # Response label for CE side
 response_label_ce = tk.Label(left_frame, text="", fg="blue", wraplength=400, justify="left")
@@ -105,6 +119,9 @@ response_label_ce.grid(row=4, column=0, columnspan=5, padx=10, pady=10)
 # First line: Buy, Sell
 button_buy = tk.Button(right_frame, text="Buy", command=lambda: send_post_request("Buy_PE"), bg="green")
 button_buy.grid(row=1, column=6, padx=10, pady=10)
+
+button_add_pe = tk.Button(right_frame, text="+1", command=lambda: send_post_request("Buy_CE"), bg="yellow")
+button_add_pe.grid(row=1, column=7, padx=10, pady=10)
 
 button_sell = tk.Button(right_frame, text="SL", command=lambda: send_post_request("Sell_PE"), bg="red")
 button_sell.grid(row=1, column=8, padx=10, pady=10)
@@ -121,19 +138,15 @@ button_s3.grid(row=2, column=8, padx=10, pady=10)
 
 # Third line: EXIT
 button_exit = tk.Button(right_frame, text="EXIT", command=lambda: send_post_request("PE_Exit"), bg="blue")
-button_exit.grid(row=3, column=6, padx=10, pady=10)
+button_exit.grid(row=3, column=7, padx=10, pady=10)
 
 # Response label for PE side
 response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, justify="left")
 response_label_pe.grid(row=4, column=6, columnspan=5, padx=10, pady=10)
 
-# Reset button
-button_reset = tk.Button(root, text="Reset", command=reset_all, bg="grey")
-button_reset.pack(side="bottom", pady=10)
-
 # UN_Exit button
 button_u_exit = tk.Button(root, text="U.Exit", command=lambda: send_post_request("UN_Exit"), bg="grey")
-button_u_exit.pack(side="bottom", pady=10)
+button_u_exit.place(relx=0.5, rely=0.95, anchor="center")
 
 # Run the application
 root.mainloop()
