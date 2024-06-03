@@ -1,0 +1,149 @@
+<TradeLayout>:
+    orientation: 'horizontal'
+    padding: 10
+    spacing: 10
+
+    BoxLayout:
+        id: left_side
+        orientation: 'vertical'
+        spacing: 10
+
+        Label:
+            text: 'CALL'
+            font_size: 14
+            bold: True
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+                text: 'Buy'
+                background_color: 0, 1, 0, 1
+                on_press: root.button_action("Buy_CE")
+
+            Button:
+                text: '+1'
+                background_color: 1, 1, 0, 1
+                on_press: root.button_action("CE_Lot")
+
+            Button:
+                text: 'LT+'
+                background_color: 1, 1, 0, 1
+                on_press: root.button_action("CE_Lot_1")
+
+            Button:
+                text: 'SL'
+                background_color: 1, 0, 0, 1
+                on_press: root.button_action("Sell_CE")
+
+            Button:
+                text: 'S1'
+                background_color: 1, 0.5, 0, 1
+                on_press: root.button_action("CE_Sell_1")
+
+            Button:
+                text: 'S2'
+                background_color: 1, 0.5, 0, 1
+                on_press: root.button_action("CE_Sell_2")
+
+            Button:
+                text: 'S3'
+                background_color: 1, 0.5, 0, 1
+                on_press: root.button_action("CE_Sell_3")
+
+            Button:
+                text: 'EXIT'
+                background_color: 0, 0, 1, 1
+                on_press: root.button_action("CE_Exit")
+
+            Label:
+                id: response_label_ce
+                text: ''
+                color: 0, 0, 1, 1
+                halign: 'left'
+                valign: 'middle'
+    
+    BoxLayout:
+        id: separator
+        orientation: 'vertical'
+        size_hint_x: None
+        width: 50
+        spacing: 10
+
+        Button:
+            text: 'Reset'
+            size_hint_y: None
+            height: 50
+            on_press: root.reset_all()
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+        Button:
+            text: 'U.Exit'
+            size_hint_y: None
+            height: 50
+            on_press: root.button_action("UN_Exit")
+
+    BoxLayout:
+        id: right_side
+        orientation: 'vertical'
+        spacing: 10
+
+        Label:
+            text: 'PUT'
+            font_size: 14
+            bold: True
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+
+            Button:
+                text: 'Buy'
+                background_color: 0, 1, 0, 1
+                on_press: root.button_action("Buy_PE")
+
+            Button:
+                text: '+1'
+                background_color: 1, 1, 0, 1
+                on_press: root.button_action("PE_Lot")
+
+            Button:
+                text: 'LT+'
+                background_color: 1, 1, 0, 1
+                on_press: root.button_action("PE_Lot_1")
+
+            Button:
+                text: 'SL'
+                background_color: 1, 0, 0, 1
+                on_press: root.button_action("Sell_PE")
+
+            Button:
+                text: 'S1'
+                background_color: 1, 0.5, 0, 1
+                on_press: root.button_action("PE_Sell_1")
+
+            Button:
+                text: 'S2'
+                background_color: 1, 0.5, 0, 1
+                on_press: root.button_action("PE_Sell_2")
+
+            Button:
+                text: 'S3'
+                background_color: 1, 0.5, 0, 1
+                on_press: root.button_action("PE_Sell_3")
+
+            Button:
+                text: 'EXIT'
+                background_color: 0, 0, 1, 1
+                on_press: root.button_action("PE_Exit")
+
+            Label:
+                id: response_label_pe
+                text: ''
+                color: 0, 0, 1, 1
+                halign: 'left'
+                valign: 'middle'
