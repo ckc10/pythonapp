@@ -37,7 +37,7 @@ def send_post_request(action):
 # Function to reset all values to 0
 def reset_all():
     actions = ["Buy_CE", "Sell_CE", "CE_Sell_1", "CE_Sell_2", "CE_Sell_3", "CE_Exit",
-               "Buy_PE", "Sell_PE", "PE_Sell_1", "PE_Sell_2", "PE_Sell_3", "PE_Exit"]
+               "Buy_PE", "Sell_PE", "PE_Sell_1", "PE_Sell_2", "PE_Sell_3", "PE_Exit","UN_Exit"]
     for action in actions:
         send_post_request_reset(action)
     response_label_ce.config(text="")
