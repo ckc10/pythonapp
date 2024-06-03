@@ -10,7 +10,7 @@ WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 # Function to send POST request and update the label with the response
 def send_post_request(action):
     data = {
-        "auth-token": "36c8ee23-5db6-48b8-9584-6fa34e098da0",
+        "auth-token": "f18769ad-818c-41c6-929d-7f1608730000",
         "key": action,
         "value": "1"
     }
@@ -45,7 +45,7 @@ def reset_all():
 # Function to send POST request with value 0 for reset
 def send_post_request_reset(action):
     data = {
-        "auth-token": "36c8ee23-5db6-48b8-9584-6fa34e098da0",
+        "auth-token": "f18769ad-818c-41c6-929d-7f1608730000",
         "key": action,
         "value": "0"
     }
