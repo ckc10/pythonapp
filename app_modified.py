@@ -62,12 +62,8 @@ def send_post_request_reset(action):
     wrapped_response = "\n".join(textwrap.wrap(response_message, width=50))
 
     # Update the label with the response message based on the button clicked
-    if "CE" in action:
-        response_label_ce.config(text=wrapped_response)
-        response_label_pe.config(text="")
-    else:
-        response_label_pe.config(text=wrapped_response)
-        response_label_ce.config(text="")
+    response_label_pe.config(text=wrapped_response)
+    
 
 # Create the main window
 root = tk.Tk()
