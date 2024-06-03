@@ -3,22 +3,21 @@ from tkinter import ttk
 import textwrap
 import asyncio
 import aiohttp
-import time
 
 # Webhook URL
 WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 
 # Function to send POST request and update the label with the response
-async def send_post_request(session, action):
+async def send_post_request(session, action, value):
     data = {
         "auth-token": "f18769ad-818c-41c6-929d-7f1608730000",
         "key": action,
-        "value": "1"
+        "value": value
     }
     try:
         async with session.post(WEBHOOK_URL, json=data) as response:
             if response.status == 200:
-                response_message = f"Success: {action}"
+                response_message = f"Success: {action} set to {value}"
             else:
                 response_message = f"Failed: {action} with status code {response.status}"
     except Exception as e:
@@ -40,41 +39,20 @@ async def reset_all():
     actions = ["Buy_CE", "Sell_CE", "CE_Sell_1", "CE_Sell_2", "CE_Sell_3", "CE_Exit", "CE_Lot", "CE_Lot_1",
                "Buy_PE", "Sell_PE", "PE_Sell_1", "PE_Sell_2", "PE_Sell_3", "PE_Exit", "PE_Lot", "PE_Lot_1", "UN_Exit"]
     async with aiohttp.ClientSession() as session:
-        await asyncio.gather(*[send_post_request_reset(session, action) for action in actions])
+        await asyncio.gather(*[send_post_request(session, action, "0") for action in actions])
     response_message = "All buttons reset to value 0."
     response_label_ce.config(text=response_message)
     response_label_pe.config(text=response_message)
-
-# Function to send POST request with value 0 for reset
-async def send_post_request_reset(session, action):
-    data = {
-        "auth-token": "f18769ad-818c-41c6-929d-7f1608730000",
-        "key": action,
-        "value": "0"
-    }
-    try:
-        async with session.post(WEBHOOK_URL, json=data) as response:
-            if response.status == 200:
-                response_message = f"Reset all buttons:{action}"
-            else:
-                response_message = f"Failed: {action} with status code {response.status}"
-    except Exception as e:
-        response_message = f"Exception: {e}"
-
-    # Wrap the response message to fit the UI window
-    wrapped_response = "\n".join(textwrap.wrap(response_message, width=50))
-
-    # Update the label with the response message based on the button clicked
-    response_label_pe.config(text=wrapped_response)
 
 def run_asyncio_task(task):
     asyncio.run(task)
 
 async def button_action(action):
     async with aiohttp.ClientSession() as session:
-        await send_post_request(session, action)
+        await send_post_request(session, action, "1")
         await asyncio.sleep(5)  # Wait for 5 seconds
-        await send_post_request_reset(session, action)  # Send reset request
+        await send_post_request(session, action, "0")  # Send reset request
+        
 
 
 # Create the main window
