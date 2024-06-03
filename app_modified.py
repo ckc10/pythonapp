@@ -36,8 +36,8 @@ def send_post_request(action):
 
 # Function to reset all values to 0
 def reset_all():
-    actions = ["Buy_CE", "Sell_CE", "CE_Sell_1", "CE_Sell_2", "CE_Sell_3", "CE_Exit",
-               "Buy_PE", "Sell_PE", "PE_Sell_1", "PE_Sell_2", "PE_Sell_3", "PE_Exit","UN_Exit"]
+    actions = ["Buy_CE", "Sell_CE", "CE_Sell_1", "CE_Sell_2", "CE_Sell_3", "CE_Exit","CE_Lot"
+               "Buy_PE", "Sell_PE", "PE_Sell_1", "PE_Sell_2", "PE_Sell_3", "PE_Exit","PE_Lot","UN_Exit"]
     for action in actions:
         send_post_request_reset(action)
     response_label_ce.config(text="")
@@ -92,7 +92,7 @@ button_reset.place(relx=0.5, rely=0.05, anchor="center")
 button_buy = tk.Button(left_frame, text="Buy", command=lambda: send_post_request("Buy_CE"), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
 
-button_add_ce = tk.Button(left_frame, text="+1", command=lambda: send_post_request("Buy_CE"), bg="yellow")
+button_add_ce = tk.Button(left_frame, text="+1", command=lambda: send_post_request("CE_Lot"), bg="yellow")
 button_add_ce.grid(row=1, column=2, padx=10, pady=10)
 
 button_sell = tk.Button(left_frame, text="SL", command=lambda: send_post_request("Sell_CE"), bg="red")
@@ -120,7 +120,7 @@ response_label_ce.grid(row=4, column=0, columnspan=5, padx=10, pady=10)
 button_buy = tk.Button(right_frame, text="Buy", command=lambda: send_post_request("Buy_PE"), bg="green")
 button_buy.grid(row=1, column=6, padx=10, pady=10)
 
-button_add_pe = tk.Button(right_frame, text="+1", command=lambda: send_post_request("Buy_CE"), bg="yellow")
+button_add_pe = tk.Button(right_frame, text="+1", command=lambda: send_post_request("PE_Lot"), bg="yellow")
 button_add_pe.grid(row=1, column=7, padx=10, pady=10)
 
 button_sell = tk.Button(right_frame, text="SL", command=lambda: send_post_request("Sell_PE"), bg="red")
