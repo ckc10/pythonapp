@@ -50,7 +50,7 @@ def run_asyncio_task(task):
 async def button_action(action):
     async with aiohttp.ClientSession() as session:
         await send_post_request(session, action, "1")
-        await asyncio.sleep(5)  # Wait for 5 seconds
+        await asyncio.sleep(3)  # Wait for 5 seconds
         await send_post_request(session, action, "0")  # Send reset request
         
 
@@ -60,7 +60,7 @@ root = tk.Tk()
 root.title("BNK-Client-60")
 
 window_width = 420
-window_height = 300
+window_height = 350
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x_coordinate = (screen_width - window_width) // 2
