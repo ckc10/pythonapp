@@ -88,15 +88,9 @@ label_call.grid(row=0, column=0, columnspan=4, pady=10)
 button_reset = tk.Button(root, text="Reset", command=lambda: run_asyncio_task(reset_all()), bg="grey")
 button_reset.place(relx=0.5, rely=0.05, anchor="center")
 
-# First line: Buy, SL, S1
+# First line: Buy, SL
 button_buy = tk.Button(left_frame, text="Buy", command=lambda: run_asyncio_task(button_action("Buy_CE")), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
-
-button_add_ce = tk.Button(left_frame, text="LT+1", command=lambda: run_asyncio_task(button_action("CE_Lot")), bg="yellow")
-button_add_ce.grid(row=1, column=2, padx=10, pady=10)
-
-button_add_ce_1 = tk.Button(left_frame, text="LT+2", command=lambda: run_asyncio_task(button_action("CE_Lot_1")), bg="yellow")
-button_add_ce_1.grid(row=1, column=3, padx=10, pady=10)
 
 button_sell = tk.Button(left_frame, text="SL", command=lambda: run_asyncio_task(button_action("Sell_CE")), bg="red")
 button_sell.grid(row=1, column=4, padx=10, pady=10)
@@ -106,49 +100,71 @@ button_s1 = tk.Button(left_frame, text="S1", command=lambda: run_asyncio_task(bu
 button_s1.grid(row=2, column=1, padx=10, pady=10)
 
 button_s2 = tk.Button(left_frame, text="S2", command=lambda: run_asyncio_task(button_action("CE_Sell_2")), bg="orange")
-button_s2.grid(row=2, column=2, padx=10, pady=10)
+button_s2.grid(row=2, column=4, padx=10, pady=10)
 
-button_s3 = tk.Button(left_frame, text="S3", command=lambda: run_asyncio_task(button_action("CE_Sell_3")), bg="orange")
-button_s3.grid(row=2, column=3, padx=10, pady=10)
+# button_s3 = tk.Button(left_frame, text="S3", command=lambda: run_asyncio_task(button_action("CE_Sell_3")), bg="orange")
+# button_s3.grid(row=2, column=3, padx=10, pady=10)
 
 # Third line: EXIT
 button_exit = tk.Button(left_frame, text="EXIT", command=lambda: run_asyncio_task(button_action("CE_Exit")), bg="blue")
 button_exit.grid(row=3, column=2, padx=10, pady=10)
 
+#Fourth Line
+button_add_ce = tk.Button(left_frame, text="LT+1", command=lambda: run_asyncio_task(button_action("CE_Lot")), bg="yellow")
+button_add_ce.grid(row=4, column=1, padx=10, pady=10)
+
+button_exit_ce = tk.Button(left_frame, text="EXIT LT1", command=lambda: run_asyncio_task(button_action("CE_Exit")), bg="blue")
+button_exit_ce.grid(row=4, column=2, padx=10, pady=10)
+
+#Fifth Line
+button_add_ce_1 = tk.Button(left_frame, text="LT+2", command=lambda: run_asyncio_task(button_action("CE_Lot_1")), bg="yellow")
+button_add_ce_1.grid(row=5, column=1, padx=10, pady=10)
+
+button_exit_ce_1 = tk.Button(left_frame, text="EXIT LT2", command=lambda: run_asyncio_task(button_action("CE_Exit")), bg="blue")
+button_exit_ce_1.grid(row=5, column=2, padx=10, pady=10)
+
 # Response label for CE side
 response_label_ce = tk.Label(left_frame, text="", fg="blue", wraplength=400, justify="left")
-response_label_ce.grid(row=4, column=0, columnspan=5, padx=10, pady=10)
+response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
+
+# PE Side buttons below
 
 # First line: Buy, Sell
 button_buy = tk.Button(right_frame, text="Buy", command=lambda: run_asyncio_task(button_action("Buy_PE")), bg="green")
 button_buy.grid(row=1, column=6, padx=10, pady=10)
 
-button_add_pe = tk.Button(right_frame, text="+1", command=lambda: run_asyncio_task(button_action("PE_Lot")), bg="yellow")
-button_add_pe.grid(row=1, column=7, padx=10, pady=10)
-
-button_add_pe_1 = tk.Button(right_frame, text="LT+", command=lambda: run_asyncio_task(button_action("PE_Lot_1")), bg="yellow")
-button_add_pe_1.grid(row=1, column=8, padx=10, pady=10)
-
 button_sell = tk.Button(right_frame, text="SL", command=lambda: run_asyncio_task(button_action("Sell_PE")), bg="red")
 button_sell.grid(row=1, column=9, padx=10, pady=10)
 
-# Second line: S1, S2, S3
+# Second line: S1, S2
 button_s1 = tk.Button(right_frame, text="S1", command=lambda: run_asyncio_task(button_action("PE_Sell_1")), bg="orange")
 button_s1.grid(row=2, column=6, padx=10, pady=10)
 
 button_s2 = tk.Button(right_frame, text="S2", command=lambda: run_asyncio_task(button_action("PE_Sell_2")), bg="orange")
-button_s2.grid(row=2, column=7, padx=10, pady=10)
-
-button_s3 = tk.Button(right_frame, text="S3", command=lambda: run_asyncio_task(button_action("PE_Sell_3")), bg="orange")
-button_s3.grid(row=2, column=8, padx=10, pady=10)
+button_s2.grid(row=2, column=9, padx=10, pady=10)
 
 # Third line: EXIT
 button_exit = tk.Button(right_frame, text="EXIT", command=lambda: run_asyncio_task(button_action("PE_Exit")), bg="blue")
 button_exit.grid(row=3, column=7, padx=10, pady=10)
 
+# Fourth Line: LT+1 Exit LT1
+
+button_add_pe = tk.Button(right_frame, text="LT+1", command=lambda: run_asyncio_task(button_action("PE_Lot")), bg="yellow")
+button_add_pe.grid(row=4, column=6, padx=10, pady=10)
+
+button_exit_pe = tk.Button(right_frame, text="EXIT_LT1", command=lambda: run_asyncio_task(button_action("PE_Exit")), bg="blue")
+button_exit_pe.grid(row=4, column=9, padx=10, pady=10)
+
+#Fift line LT+2 EXIT_LT2
+button_add_pe_1 = tk.Button(right_frame, text="LT+2", command=lambda: run_asyncio_task(button_action("PE_Lot_1")), bg="yellow")
+button_add_pe_1.grid(row=5, column=6, padx=10, pady=10)
+
+button_exit_pe_1 = tk.Button(right_frame, text="EXIT_LT2", command=lambda: run_asyncio_task(button_action("PE_Exit")), bg="blue")
+button_exit_pe_1.grid(row=5, column=9, padx=10, pady=10)
+
 # Response label for PE side
 response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, justify="left")
-response_label_pe.grid(row=4, column=6, columnspan=5, padx=10, pady=10)
+response_label_pe.grid(row=6, column=6, columnspan=5, padx=10, pady=10)
 
 # UN_Exit button
 button_u_exit = tk.Button(root, text="U.Exit", command=lambda: run_asyncio_task(button_action("UN_Exit")), bg="grey")
