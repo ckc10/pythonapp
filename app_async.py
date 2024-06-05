@@ -88,14 +88,14 @@ label_call.grid(row=0, column=0, columnspan=4, pady=10)
 button_reset = tk.Button(root, text="Reset", command=lambda: run_asyncio_task(reset_all()), bg="grey")
 button_reset.place(relx=0.5, rely=0.05, anchor="center")
 
-# First line: Buy, Sell
+# First line: Buy, SL, S1
 button_buy = tk.Button(left_frame, text="Buy", command=lambda: run_asyncio_task(button_action("Buy_CE")), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
 
-button_add_ce = tk.Button(left_frame, text="+1", command=lambda: run_asyncio_task(button_action("CE_Lot")), bg="yellow")
+button_add_ce = tk.Button(left_frame, text="LT+1", command=lambda: run_asyncio_task(button_action("CE_Lot")), bg="yellow")
 button_add_ce.grid(row=1, column=2, padx=10, pady=10)
 
-button_add_ce_1 = tk.Button(left_frame, text="LT+", command=lambda: run_asyncio_task(button_action("CE_Lot_1")), bg="yellow")
+button_add_ce_1 = tk.Button(left_frame, text="LT+2", command=lambda: run_asyncio_task(button_action("CE_Lot_1")), bg="yellow")
 button_add_ce_1.grid(row=1, column=3, padx=10, pady=10)
 
 button_sell = tk.Button(left_frame, text="SL", command=lambda: run_asyncio_task(button_action("Sell_CE")), bg="red")
