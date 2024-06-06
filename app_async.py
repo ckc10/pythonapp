@@ -166,7 +166,7 @@ button_s1.grid(row=2, column=6, padx=10, pady=10)
 button_s2 = tk.Button(right_frame, text="S2", command=lambda: multi_token("PE_Sell_2"), bg="orange")
 button_s2.grid(row=2, column=7, padx=10, pady=10)
 
-button_s3 = tk.Button(right_frame, text="S2", command=lambda: multi_token("PE_Sell_3"), bg="orange")
+button_s3 = tk.Button(right_frame, text="S3", command=lambda: multi_token("PE_Sell_3"), bg="orange")
 button_s3.grid(row=2, column=8, padx=10, pady=10)
 
 # Third line: EXIT
@@ -182,7 +182,7 @@ button_exit_pe = tk.Button(right_frame, text="EXIT_LT1", command=lambda: multi_t
 button_exit_pe.grid(row=4, column=8, padx=10, pady=10)
 
 #Fift line LT+2 EXIT_LT2
-button_add_pe_1 = tk.Button(right_frame, text="LT+2", command=lambda: multi_token("PE_Lot_2"), bg="yellow")
+button_add_pe_1 = tk.Button(right_frame, text="LT+2", command=lambda: multi_token("PE_Lot2"), bg="yellow")
 button_add_pe_1.grid(row=5, column=6, padx=10, pady=10)
 
 button_exit_pe_1 = tk.Button(right_frame, text="EXIT_LT2", command=lambda: multi_token("PE_Lot2_Exit"), bg="blue")
