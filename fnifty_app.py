@@ -7,10 +7,10 @@ import aiohttp
 # Webhook URL
 WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 
-token1="f18769ad-818c-41c6-929d-7f1608730000"
-token2="f18769ad-818c-41c6-929d-7f1608730000"
-token3="f18769ad-818c-41c6-929d-7f1608730000"
-token4="f18769ad-818c-41c6-929d-7f1608730000"
+token1="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
+token2="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
+token3="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
+token4="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
 
 
 # Function to send POST request and update the label with the response
@@ -67,6 +67,9 @@ def multi_token(action):
     run_asyncio_task(button_action(token2,action))
     run_asyncio_task(button_action(token3,action))
     run_asyncio_task(button_action(token4,action))
+    tokens =[token1,token2,token3,token4]
+    # async with aiohttp.ClientSession() as session:
+    #     await asyncio.gather(*[send_post_request(session, token, action, "1") for token in tokens])
 
 
 # Function for multi token reset 
@@ -76,14 +79,15 @@ def multi_token_reset():
     run_asyncio_task(reset_all(token2))
     run_asyncio_task(reset_all(token3))
     run_asyncio_task(reset_all(token4))
+    
 
 
 # Create the main window
 root = tk.Tk()
-root.title("BNK-Client-60")
+root.title("FINNIFTY-Client")
 
-window_width = 650
-window_height = 500
+window_width = 550
+window_height = 450
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x_coordinate = (screen_width - window_width) // 2
@@ -111,6 +115,11 @@ label_call.grid(row=0, column=0, columnspan=4, pady=10)
 button_reset = tk.Button(root, text="Reset", command=lambda: multi_token_reset(), bg="grey")
 button_reset.place(relx=0.5, rely=0.05, anchor="center")
 
+# UN_Exit button
+button_u_exit = tk.Button(root, text="U.Exit", command=lambda: multi_token("UN_Exit"), bg="grey")
+button_u_exit.place(relx=0.5, rely=0.95, anchor="center")
+
+##################CALL###########################################################################
 # First line: Buy, SL
 button_buy = tk.Button(left_frame, text="Buy", command=lambda: multi_token("Buy_CE"), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
@@ -151,50 +160,27 @@ response_label_ce = tk.Label(left_frame, text="", fg="blue", wraplength=400, jus
 response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL CE
-label_nifty = tk.Label(left_frame, text="NIFTY", font=("Arial", 9))
-label_nifty.grid(row=8, column=1, padx=10,pady=10)
-
-nftsl = tk.Entry(left_frame,width=10)
-nftsl.grid(row=8, column=2, padx=10,pady=10)
-
-btn_add = tk.Button(left_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
-btn_add.grid(row=8, column=3, padx=10, pady=10)
-
-btn_exit = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
-btn_exit.grid(row=8, column=4, padx=10, pady=10)
-
-label_bnknifty = tk.Label(left_frame, text="B.NIFTY", font=("Arial", 9))
-label_bnknifty.grid(row=9, column=1, padx=10,pady=10)
-
-bnftsl = tk.Entry(left_frame,width=10)
-bnftsl.grid(row=9, column=2, padx=10,pady=10)
-
-btn_add = tk.Button(left_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
-btn_add.grid(row=9, column=3, padx=10, pady=10)
-
-btn_exit = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
-btn_exit.grid(row=9, column=4, padx=10, pady=10)
 
 label_finnifty = tk.Label(left_frame, text="F.NIFTY", font=("Arial", 9))
-label_finnifty.grid(row=10, column=1, padx=10,pady=10)
+label_finnifty.grid(row=8, column=1, padx=10,pady=10)
 
 fnftsl = tk.Entry(left_frame,width=10)
-fnftsl.grid(row=10, column=2, padx=10,pady=10)
+fnftsl.grid(row=8, column=2, padx=10,pady=10)
 
-btn_add = tk.Button(left_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
-btn_add.grid(row=10, column=3, padx=10, pady=10)
+btn_sl = tk.Button(left_frame, text="SL", command=lambda: multi_token("CE_Lot2"), bg="pink")
+btn_sl.grid(row=8, column=3, padx=10, pady=10)
 
-btn_exit = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
-btn_exit.grid(row=10, column=4, padx=10, pady=10)
+btn_reset = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_reset.grid(row=8, column=4, padx=10, pady=10)
 
-# #######PE Side buttons below
+# #######PE Side buttons below---------------------------------------------------------------------------
 
 # First line: Buy, Sell
 button_buy = tk.Button(right_frame, text="Buy", command=lambda: multi_token("Buy_PE"), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
 
 button_sell = tk.Button(right_frame, text="SL", command=lambda: multi_token("Sell_PE"), bg="red")
-button_sell.grid(row=1, column=4, padx=10, pady=10)
+button_sell.grid(row=1, column=3, padx=10, pady=10)
 
 # Second line: S1, S2
 button_s1 = tk.Button(right_frame, text="S1", command=lambda: multi_token("PE_Sell_1"), bg="orange")
@@ -230,45 +216,20 @@ response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, ju
 response_label_pe.grid(row=6, column=1, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL PE
-label_nifty = tk.Label(right_frame, text="NIFTY", font=("Arial", 9))
-label_nifty.grid(row=8, column=1, padx=10,pady=10)
-
-nftsl = tk.Entry(right_frame,width=10)
-nftsl.grid(row=8, column=2, padx=10,pady=10)
-
-btn_add = tk.Button(right_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
-btn_add.grid(row=8, column=3, padx=10, pady=10)
-
-btn_exit = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
-btn_exit.grid(row=8, column=4, padx=10, pady=10)
-
-label_bnknifty = tk.Label(right_frame, text="B.NIFTY", font=("Arial", 9))
-label_bnknifty.grid(row=9, column=1, padx=10,pady=10)
-
-bnftsl = tk.Entry(right_frame,width=10)
-bnftsl.grid(row=9, column=2, padx=10,pady=10)
-
-btn_add = tk.Button(right_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
-btn_add.grid(row=9, column=3, padx=10, pady=10)
-
-btn_exit = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
-btn_exit.grid(row=9, column=4, padx=10, pady=10)
 
 label_finnifty = tk.Label(right_frame, text="F.NIFTY", font=("Arial", 9))
-label_finnifty.grid(row=10, column=1, padx=10,pady=10)
+label_finnifty.grid(row=8, column=1, padx=10,pady=10)
 
 fnftsl = tk.Entry(right_frame,width=10)
-fnftsl.grid(row=10, column=2, padx=10,pady=10)
+fnftsl.grid(row=8, column=2, padx=10,pady=10)
 
-btn_add = tk.Button(right_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
-btn_add.grid(row=10, column=3, padx=10, pady=10)
+btn_sl = tk.Button(right_frame, text="SL", command=lambda: multi_token("CE_Lot2"), bg="pink")
+btn_sl.grid(row=8, column=3, padx=10, pady=10)
 
-btn_exit = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
-btn_exit.grid(row=10, column=4, padx=10, pady=10)
+btn_reset = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_reset.grid(row=8, column=4, padx=10, pady=10)
 
-# UN_Exit button
-button_u_exit = tk.Button(root, text="U.Exit", command=lambda: multi_token("UN_Exit"), bg="grey")
-button_u_exit.place(relx=0.5, rely=0.95, anchor="center")
+
 
 # Run the application
 root.mainloop()
