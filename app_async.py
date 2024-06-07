@@ -82,8 +82,8 @@ def multi_token_reset():
 root = tk.Tk()
 root.title("BNK-Client-60")
 
-window_width = 450
-window_height = 350
+window_width = 650
+window_height = 500
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 x_coordinate = (screen_width - window_width) // 2
@@ -150,47 +150,121 @@ button_exit_ce_1.grid(row=5, column=3, padx=10, pady=10)
 response_label_ce = tk.Label(left_frame, text="", fg="blue", wraplength=400, justify="left")
 response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
 
-# PE Side buttons below
+# Buttons for taking manual SL CE
+label_nifty = tk.Label(left_frame, text="NIFTY", font=("Arial", 9))
+label_nifty.grid(row=8, column=1, padx=10,pady=10)
+
+nftsl = tk.Entry(left_frame,width=10)
+nftsl.grid(row=8, column=2, padx=10,pady=10)
+
+btn_add = tk.Button(left_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+btn_add.grid(row=8, column=3, padx=10, pady=10)
+
+btn_exit = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_exit.grid(row=8, column=4, padx=10, pady=10)
+
+label_bnknifty = tk.Label(left_frame, text="B.NIFTY", font=("Arial", 9))
+label_bnknifty.grid(row=9, column=1, padx=10,pady=10)
+
+bnftsl = tk.Entry(left_frame,width=10)
+bnftsl.grid(row=9, column=2, padx=10,pady=10)
+
+btn_add = tk.Button(left_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+btn_add.grid(row=9, column=3, padx=10, pady=10)
+
+btn_exit = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_exit.grid(row=9, column=4, padx=10, pady=10)
+
+label_finnifty = tk.Label(left_frame, text="F.NIFTY", font=("Arial", 9))
+label_finnifty.grid(row=10, column=1, padx=10,pady=10)
+
+fnftsl = tk.Entry(left_frame,width=10)
+fnftsl.grid(row=10, column=2, padx=10,pady=10)
+
+btn_add = tk.Button(left_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+btn_add.grid(row=10, column=3, padx=10, pady=10)
+
+btn_exit = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_exit.grid(row=10, column=4, padx=10, pady=10)
+
+# #######PE Side buttons below
 
 # First line: Buy, Sell
 button_buy = tk.Button(right_frame, text="Buy", command=lambda: multi_token("Buy_PE"), bg="green")
-button_buy.grid(row=1, column=6, padx=10, pady=10)
+button_buy.grid(row=1, column=1, padx=10, pady=10)
 
 button_sell = tk.Button(right_frame, text="SL", command=lambda: multi_token("Sell_PE"), bg="red")
-button_sell.grid(row=1, column=8, padx=10, pady=10)
+button_sell.grid(row=1, column=4, padx=10, pady=10)
 
 # Second line: S1, S2
 button_s1 = tk.Button(right_frame, text="S1", command=lambda: multi_token("PE_Sell_1"), bg="orange")
-button_s1.grid(row=2, column=6, padx=10, pady=10)
+button_s1.grid(row=2, column=1, padx=10, pady=10)
 
 button_s2 = tk.Button(right_frame, text="S2", command=lambda: multi_token("PE_Sell_2"), bg="orange")
-button_s2.grid(row=2, column=7, padx=10, pady=10)
+button_s2.grid(row=2, column=2, padx=10, pady=10)
 
 button_s3 = tk.Button(right_frame, text="S3", command=lambda: multi_token("PE_Sell_3"), bg="orange")
-button_s3.grid(row=2, column=8, padx=10, pady=10)
+button_s3.grid(row=2, column=3, padx=10, pady=10)
 
 # Third line: EXIT
 button_exit = tk.Button(right_frame, text="EXIT", command=lambda: multi_token("PE_Exit"), bg="blue")
-button_exit.grid(row=3, column=7, padx=10, pady=10)
+button_exit.grid(row=3, column=2, padx=10, pady=10)
 
 # Fourth Line: LT+1 Exit LT1
 
 button_add_pe = tk.Button(right_frame, text="LT+1", command=lambda: multi_token("PE_Lot1"), bg="yellow")
-button_add_pe.grid(row=4, column=6, padx=10, pady=10)
+button_add_pe.grid(row=4, column=1, padx=10, pady=10)
 
 button_exit_pe = tk.Button(right_frame, text="EXIT_LT1", command=lambda: multi_token("PE_Lot1_Exit"), bg="blue")
-button_exit_pe.grid(row=4, column=8, padx=10, pady=10)
+button_exit_pe.grid(row=4, column=3, padx=10, pady=10)
 
 #Fift line LT+2 EXIT_LT2
 button_add_pe_1 = tk.Button(right_frame, text="LT+2", command=lambda: multi_token("PE_Lot2"), bg="yellow")
-button_add_pe_1.grid(row=5, column=6, padx=10, pady=10)
+button_add_pe_1.grid(row=5, column=1, padx=10, pady=10)
 
 button_exit_pe_1 = tk.Button(right_frame, text="EXIT_LT2", command=lambda: multi_token("PE_Lot2_Exit"), bg="blue")
-button_exit_pe_1.grid(row=5, column=8, padx=10, pady=10)
+button_exit_pe_1.grid(row=5, column=3, padx=10, pady=10)
 
 # Response label for PE side
 response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, justify="left")
-response_label_pe.grid(row=6, column=6, columnspan=5, padx=10, pady=10)
+response_label_pe.grid(row=6, column=1, columnspan=5, padx=10, pady=10)
+
+# Buttons for taking manual SL PE
+label_nifty = tk.Label(right_frame, text="NIFTY", font=("Arial", 9))
+label_nifty.grid(row=8, column=1, padx=10,pady=10)
+
+nftsl = tk.Entry(right_frame,width=10)
+nftsl.grid(row=8, column=2, padx=10,pady=10)
+
+btn_add = tk.Button(right_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+btn_add.grid(row=8, column=3, padx=10, pady=10)
+
+btn_exit = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_exit.grid(row=8, column=4, padx=10, pady=10)
+
+label_bnknifty = tk.Label(right_frame, text="B.NIFTY", font=("Arial", 9))
+label_bnknifty.grid(row=9, column=1, padx=10,pady=10)
+
+bnftsl = tk.Entry(right_frame,width=10)
+bnftsl.grid(row=9, column=2, padx=10,pady=10)
+
+btn_add = tk.Button(right_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+btn_add.grid(row=9, column=3, padx=10, pady=10)
+
+btn_exit = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_exit.grid(row=9, column=4, padx=10, pady=10)
+
+label_finnifty = tk.Label(right_frame, text="F.NIFTY", font=("Arial", 9))
+label_finnifty.grid(row=10, column=1, padx=10,pady=10)
+
+fnftsl = tk.Entry(right_frame,width=10)
+fnftsl.grid(row=10, column=2, padx=10,pady=10)
+
+btn_add = tk.Button(right_frame, text="Add", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+btn_add.grid(row=10, column=3, padx=10, pady=10)
+
+btn_exit = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_exit.grid(row=10, column=4, padx=10, pady=10)
 
 # UN_Exit button
 button_u_exit = tk.Button(root, text="U.Exit", command=lambda: multi_token("UN_Exit"), bg="grey")
