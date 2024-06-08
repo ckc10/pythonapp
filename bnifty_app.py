@@ -12,6 +12,7 @@ token2="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size
 token3="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
 token4="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
 
+tokens = [token1,token2,token3,token4] 
 
 # Function to send POST request and update the label with the response
 async def send_post_request(session, token, action, value):
@@ -59,6 +60,10 @@ async def button_action(token,action):
         await asyncio.sleep(3)  # Wait for 5 seconds
         await send_post_request(session,token, action, "0")  # Send reset request
         
+# Function to call the manual stop loss parameter
+async def manual_sl(action,value):
+        async with aiohttp.ClientSession() as session:
+            await asyncio.gather(*[send_post_request(session, token, action, value) for token in tokens])   
 
 # Function to call all the tokens at the same time
 
