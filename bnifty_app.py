@@ -161,8 +161,8 @@ response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL CE
 
-label_bnknifty = tk.Label(left_frame, text="B.NIFTY", font=("Arial", 9))
-label_bnknifty.grid(row=8, column=1, padx=10,pady=10)
+label_bnknifty = tk.Label(left_frame, text="BNIFTY", font=("Arial", 9))
+label_bnknifty.grid(row=8, column=1, padx=5,pady=5)
 
 bnftsl = tk.Entry(left_frame,width=10)
 bnftsl.grid(row=8, column=2, padx=10,pady=10)
@@ -216,8 +216,8 @@ response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, ju
 response_label_pe.grid(row=6, column=1, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL PE
-label_bnknifty = tk.Label(right_frame, text="B.NIFTY", font=("Arial", 9))
-label_bnknifty.grid(row=8, column=1, padx=10,pady=10)
+label_bnknifty = tk.Label(right_frame, text="BNIFTY", font=("Arial", 9))
+label_bnknifty.grid(row=8, column=1, padx=5,pady=10)
 
 bnftsl = tk.Entry(right_frame,width=10)
 bnftsl.grid(row=8, column=2, padx=10,pady=10)

@@ -86,7 +86,7 @@ def multi_token_reset():
 root = tk.Tk()
 root.title("FINNIFTY-Client")
 
-window_width = 550
+window_width = 600
 window_height = 450
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
@@ -161,7 +161,7 @@ response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL CE
 
-label_finnifty = tk.Label(left_frame, text="F.NIFTY", font=("Arial", 9))
+label_finnifty = tk.Label(left_frame, text="FNIFTY", font=("Arial", 9))
 label_finnifty.grid(row=8, column=1, padx=10,pady=10)
 
 fnftsl = tk.Entry(left_frame,width=10)
@@ -217,7 +217,7 @@ response_label_pe.grid(row=6, column=1, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL PE
 
-label_finnifty = tk.Label(right_frame, text="F.NIFTY", font=("Arial", 9))
+label_finnifty = tk.Label(right_frame, text="FNIFTY", font=("Arial", 9))
 label_finnifty.grid(row=8, column=1, padx=10,pady=10)
 
 fnftsl = tk.Entry(right_frame,width=10)
