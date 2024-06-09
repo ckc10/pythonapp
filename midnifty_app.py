@@ -85,7 +85,7 @@ async def multi_token_reset():
         
 # Create the main window
 root = tk.Tk()
-root.title("FINNIFTY-Client")
+root.title("MIDCAPNIFTY-Client")
 
 stopLoss= tk.IntVar()
 
@@ -162,16 +162,16 @@ response_label_ce = tk.Label(left_frame, text="", fg="blue", wraplength=400, jus
 response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL CE
-label_nifty = tk.Label(left_frame, text="FNIFTY", font=("Arial", 9))
+label_nifty = tk.Label(left_frame, text="MNIFTY", font=("Arial", 9))
 label_nifty.grid(row=8, column=1, padx=10,pady=10)
 
 nftsl = tk.Entry(left_frame,width=10,textvariable=stopLoss)
 nftsl.grid(row=8, column=2, padx=10,pady=10)
 
-btn_sl = tk.Button(left_frame, text="SL", command=lambda: run_asyncio_task(manual_sl(action="FIN_CE_SL",value=stopLoss.get())), bg="pink")
+btn_sl = tk.Button(left_frame, text="SL", command=lambda: run_asyncio_task(manual_sl(action="MIDNIFT_CE_SL",value=stopLoss.get())), bg="pink")
 btn_sl.grid(row=8, column=3, padx=10, pady=10)
 
-btn_reset = tk.Button(left_frame, text="RST", command=lambda: run_asyncio_task(manual_sl(action="FIN_CE_SL",value="0")), bg="blue")
+btn_reset = tk.Button(left_frame, text="RST", command=lambda: run_asyncio_task(manual_sl(action="MIDNIFT_CE_SL",value="0")), bg="blue")
 btn_reset.grid(row=8, column=4, padx=10, pady=10)
 
 # #######PE Side buttons below
@@ -217,16 +217,16 @@ response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, ju
 response_label_pe.grid(row=6, column=1, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL PE
-label_nifty = tk.Label(right_frame, text="FNIFTY", font=("Arial", 9))
+label_nifty = tk.Label(right_frame, text="MNIFTY", font=("Arial", 9))
 label_nifty.grid(row=8, column=1, padx=10,pady=10)
 
 nftsl = tk.Entry(right_frame,width=10,textvariable=stopLoss)
 nftsl.grid(row=8, column=2, padx=10,pady=10)
 
-btn_sl = tk.Button(right_frame, text="SL", command=lambda: run_asyncio_task(manual_sl(action="FIN_PE_SL",value=stopLoss.get())), bg="pink")
+btn_sl = tk.Button(right_frame, text="SL", command=lambda: run_asyncio_task(manual_sl(action="MIDNIFT_PE_SL",value=stopLoss.get())), bg="pink")
 btn_sl.grid(row=8, column=3, padx=10, pady=10)
 
-btn_reset = tk.Button(right_frame, text="RST", command=lambda: run_asyncio_task(manual_sl(action="FIN_PE_SL",value="0")), bg="blue")
+btn_reset = tk.Button(right_frame, text="RST", command=lambda: run_asyncio_task(manual_sl(action="MIDNIFT_PE_SL",value="0")), bg="blue")
 btn_reset.grid(row=8, column=4, padx=10, pady=10)
 
 # Run the application

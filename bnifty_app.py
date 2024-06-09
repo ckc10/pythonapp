@@ -12,7 +12,7 @@ token2="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size
 token3="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
 token4="f18769ad-818c-41c6-929d-7f1608730000"    # API Token for lot size 
 
-tokens = [token1,token2,token3,token4] 
+tokens =[token1,token2,token3,token4]
 
 # Function to send POST request and update the label with the response
 async def send_post_request(session, token, action, value):
@@ -62,36 +62,34 @@ async def button_action(token,action):
         
 # Function to call the manual stop loss parameter
 async def manual_sl(action,value):
-        async with aiohttp.ClientSession() as session:
-            await asyncio.gather(*[send_post_request(session, token, action, value) for token in tokens])   
+        # tokens =[token1,token2,token3,token4]
+    async with aiohttp.ClientSession() as session:
+        await asyncio.gather(*[send_post_request(session, token, action, value) for token in tokens])      
+        # response_label_ce.config(text=value)
 
 # Function to call all the tokens at the same time
 
-def multi_token(action):
-    run_asyncio_task(button_action(token1,action))
-    run_asyncio_task(button_action(token2,action))
-    run_asyncio_task(button_action(token3,action))
-    run_asyncio_task(button_action(token4,action))
-    tokens =[token1,token2,token3,token4]
-    # async with aiohttp.ClientSession() as session:
-    #     await asyncio.gather(*[send_post_request(session, token, action, "1") for token in tokens])
+async def multi_token(action):
+    async with aiohttp.ClientSession() as session:
+        await asyncio.gather(*[send_post_request(session, token, action, "1") for token in tokens])
+        await asyncio.sleep(3)  # Wait for 5 seconds
+        await asyncio.gather(*[send_post_request(session, token, action, "0") for token in tokens])
 
+    
 
 # Function for multi token reset 
 
-def multi_token_reset():
-    run_asyncio_task(reset_all(token1))
-    run_asyncio_task(reset_all(token2))
-    run_asyncio_task(reset_all(token3))
-    run_asyncio_task(reset_all(token4))
-    
-
-
+async def multi_token_reset():
+    async with aiohttp.ClientSession() as session:
+        await asyncio.gather(*[reset_all(token) for token in tokens])
+        
 # Create the main window
 root = tk.Tk()
 root.title("BANKNIFTY-Client")
 
-window_width = 550
+stopLoss= tk.IntVar()
+
+window_width = 650
 window_height = 450
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
@@ -117,47 +115,46 @@ label_call = tk.Label(left_frame, text="CALL", font=("Arial", 14, "bold"))
 label_call.grid(row=0, column=0, columnspan=4, pady=10)
 
 # Reset button
-button_reset = tk.Button(root, text="Reset", command=lambda: multi_token_reset(), bg="grey")
+button_reset = tk.Button(root, text="Reset", command=lambda: run_asyncio_task(multi_token_reset()), bg="grey")
 button_reset.place(relx=0.5, rely=0.05, anchor="center")
 
 # UN_Exit button
-button_u_exit = tk.Button(root, text="U.Exit", command=lambda: multi_token("UN_Exit"), bg="grey")
+button_u_exit = tk.Button(root, text="U.Exit", command=lambda: run_asyncio_task(multi_token("UN_Exit")), bg="grey")
 button_u_exit.place(relx=0.5, rely=0.95, anchor="center")
 
-###CALL Sde butons ########################################################################
 # First line: Buy, SL
-button_buy = tk.Button(left_frame, text="Buy", command=lambda: multi_token("Buy_CE"), bg="green")
+button_buy = tk.Button(left_frame, text="Buy", command=lambda: run_asyncio_task(multi_token("Buy_CE")), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
 
-button_sell = tk.Button(left_frame, text="SL", command=lambda: multi_token("Sell_CE"), bg="red")
+button_sell = tk.Button(left_frame, text="SL", command=lambda: run_asyncio_task(multi_token("Sell_CE")), bg="red")
 button_sell.grid(row=1, column=3, padx=10, pady=10)
 
 # Second line: S1, S2, 
-button_s1 = tk.Button(left_frame, text="S1", command=lambda: multi_token("CE_Sell_1"), bg="orange")
+button_s1 = tk.Button(left_frame, text="S1", command=lambda: run_asyncio_task(multi_token("CE_Sell_1")), bg="orange")
 button_s1.grid(row=2, column=1, padx=10, pady=10)
 
-button_s2 = tk.Button(left_frame, text="S2", command=lambda: multi_token("CE_Sell_2"), bg="orange")
+button_s2 = tk.Button(left_frame, text="S2", command=lambda: run_asyncio_task(multi_token("CE_Sell_2")), bg="orange")
 button_s2.grid(row=2, column=2, padx=10, pady=10)
 
-button_s3 = tk.Button(left_frame, text="S3", command=lambda: multi_token("CE_Sell_3"), bg="orange")
+button_s3 = tk.Button(left_frame, text="S3", command=lambda: run_asyncio_task(multi_token("CE_Sell_3")), bg="orange")
 button_s3.grid(row=2, column=3, padx=10, pady=10)
 
 # Third line: EXIT
-button_exit = tk.Button(left_frame, text="EXIT", command=lambda: multi_token("CE_Exit"), bg="blue")
+button_exit = tk.Button(left_frame, text="EXIT", command=lambda: run_asyncio_task(multi_token("CE_Exit")), bg="blue")
 button_exit.grid(row=3, column=2, padx=10, pady=10)
 
 #Fourth Line
-button_add_ce = tk.Button(left_frame, text="LT+1", command=lambda: multi_token("CE_Lot1"), bg="yellow")
+button_add_ce = tk.Button(left_frame, text="LT+1", command=lambda: run_asyncio_task(multi_token("CE_Lot1")), bg="yellow")
 button_add_ce.grid(row=4, column=1, padx=10, pady=10)
 
-button_exit_ce = tk.Button(left_frame, text="EXIT LT1", command=lambda: multi_token("CE_Lot1_Exit"), bg="blue")
+button_exit_ce = tk.Button(left_frame, text="EXIT LT1", command=lambda: run_asyncio_task(multi_token("CE_Lot1_Exit")), bg="blue")
 button_exit_ce.grid(row=4, column=3, padx=10, pady=10)
 
 #Fifth Line
-button_add_ce_1 = tk.Button(left_frame, text="LT+2", command=lambda: multi_token("CE_Lot2"), bg="yellow")
+button_add_ce_1 = tk.Button(left_frame, text="LT+2", command=lambda: run_asyncio_task(multi_token("CE_Lot2")), bg="yellow")
 button_add_ce_1.grid(row=5, column=1, padx=10, pady=10)
 
-button_exit_ce_1 = tk.Button(left_frame, text="EXIT LT2", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+button_exit_ce_1 = tk.Button(left_frame, text="EXIT LT2", command=lambda: run_asyncio_task(multi_token("CE_Lot2_Exit")), bg="blue")
 button_exit_ce_1.grid(row=5, column=3, padx=10, pady=10)
 
 # Response label for CE side
@@ -165,55 +162,54 @@ response_label_ce = tk.Label(left_frame, text="", fg="blue", wraplength=400, jus
 response_label_ce.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL CE
+label_nifty = tk.Label(left_frame, text="BNIFTY", font=("Arial", 9))
+label_nifty.grid(row=8, column=1, padx=10,pady=10)
 
-label_bnknifty = tk.Label(left_frame, text="BNIFTY", font=("Arial", 9))
-label_bnknifty.grid(row=8, column=1, padx=5,pady=5)
+nftsl = tk.Entry(left_frame,width=10,textvariable=stopLoss)
+nftsl.grid(row=8, column=2, padx=10,pady=10)
 
-bnftsl = tk.Entry(left_frame,width=10)
-bnftsl.grid(row=8, column=2, padx=10,pady=10)
-
-btn_sl = tk.Button(left_frame, text="SL", command=lambda: multi_token("CE_Lot2"), bg="pink")
+btn_sl = tk.Button(left_frame, text="SL", command=lambda: run_asyncio_task(manual_sl(action="BNF_CE_SL",value=stopLoss.get())), bg="pink")
 btn_sl.grid(row=8, column=3, padx=10, pady=10)
 
-btn_reset = tk.Button(left_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_reset = tk.Button(left_frame, text="RST", command=lambda: run_asyncio_task(manual_sl(action="BNF_CE_SL",value="0")), bg="blue")
 btn_reset.grid(row=8, column=4, padx=10, pady=10)
 
-# #######PE Side buttons below#####################################################################
+# #######PE Side buttons below
 
 # First line: Buy, Sell
-button_buy = tk.Button(right_frame, text="Buy", command=lambda: multi_token("Buy_PE"), bg="green")
+button_buy = tk.Button(right_frame, text="Buy", command=lambda: run_asyncio_task(multi_token("Buy_PE")), bg="green")
 button_buy.grid(row=1, column=1, padx=10, pady=10)
 
-button_sell = tk.Button(right_frame, text="SL", command=lambda: multi_token("Sell_PE"), bg="red")
+button_sell = tk.Button(right_frame, text="SL", command=lambda: run_asyncio_task(multi_token("Sell_PE")), bg="red")
 button_sell.grid(row=1, column=3, padx=10, pady=10)
 
 # Second line: S1, S2
-button_s1 = tk.Button(right_frame, text="S1", command=lambda: multi_token("PE_Sell_1"), bg="orange")
+button_s1 = tk.Button(right_frame, text="S1", command=lambda: run_asyncio_task(multi_token("PE_Sell_1")), bg="orange")
 button_s1.grid(row=2, column=1, padx=10, pady=10)
 
-button_s2 = tk.Button(right_frame, text="S2", command=lambda: multi_token("PE_Sell_2"), bg="orange")
+button_s2 = tk.Button(right_frame, text="S2", command=lambda: run_asyncio_task(multi_token("PE_Sell_2")), bg="orange")
 button_s2.grid(row=2, column=2, padx=10, pady=10)
 
-button_s3 = tk.Button(right_frame, text="S3", command=lambda: multi_token("PE_Sell_3"), bg="orange")
+button_s3 = tk.Button(right_frame, text="S3", command=lambda: run_asyncio_task(multi_token("PE_Sell_3")), bg="orange")
 button_s3.grid(row=2, column=3, padx=10, pady=10)
 
 # Third line: EXIT
-button_exit = tk.Button(right_frame, text="EXIT", command=lambda: multi_token("PE_Exit"), bg="blue")
+button_exit = tk.Button(right_frame, text="EXIT", command=lambda: run_asyncio_task(multi_token("PE_Exit")), bg="blue")
 button_exit.grid(row=3, column=2, padx=10, pady=10)
 
 # Fourth Line: LT+1 Exit LT1
 
-button_add_pe = tk.Button(right_frame, text="LT+1", command=lambda: multi_token("PE_Lot1"), bg="yellow")
+button_add_pe = tk.Button(right_frame, text="LT+1", command=lambda: run_asyncio_task(multi_token("PE_Lot1")), bg="yellow")
 button_add_pe.grid(row=4, column=1, padx=10, pady=10)
 
-button_exit_pe = tk.Button(right_frame, text="EXIT_LT1", command=lambda: multi_token("PE_Lot1_Exit"), bg="blue")
+button_exit_pe = tk.Button(right_frame, text="EXIT_LT1", command=lambda: run_asyncio_task(multi_token("PE_Lot1_Exit")), bg="blue")
 button_exit_pe.grid(row=4, column=3, padx=10, pady=10)
 
 #Fift line LT+2 EXIT_LT2
-button_add_pe_1 = tk.Button(right_frame, text="LT+2", command=lambda: multi_token("PE_Lot2"), bg="yellow")
+button_add_pe_1 = tk.Button(right_frame, text="LT+2", command=lambda: run_asyncio_task(multi_token("PE_Lot2")), bg="yellow")
 button_add_pe_1.grid(row=5, column=1, padx=10, pady=10)
 
-button_exit_pe_1 = tk.Button(right_frame, text="EXIT_LT2", command=lambda: multi_token("PE_Lot2_Exit"), bg="blue")
+button_exit_pe_1 = tk.Button(right_frame, text="EXIT_LT2", command=lambda: run_asyncio_task(multi_token("PE_Lot2_Exit")), bg="blue")
 button_exit_pe_1.grid(row=5, column=3, padx=10, pady=10)
 
 # Response label for PE side
@@ -221,16 +217,16 @@ response_label_pe = tk.Label(right_frame, text="", fg="blue", wraplength=400, ju
 response_label_pe.grid(row=6, column=1, columnspan=5, padx=10, pady=10)
 
 # Buttons for taking manual SL PE
-label_bnknifty = tk.Label(right_frame, text="BNIFTY", font=("Arial", 9))
-label_bnknifty.grid(row=8, column=1, padx=5,pady=10)
+label_nifty = tk.Label(right_frame, text="BNIFTY", font=("Arial", 9))
+label_nifty.grid(row=8, column=1, padx=10,pady=10)
 
-bnftsl = tk.Entry(right_frame,width=10)
-bnftsl.grid(row=8, column=2, padx=10,pady=10)
+nftsl = tk.Entry(right_frame,width=10,textvariable=stopLoss)
+nftsl.grid(row=8, column=2, padx=10,pady=10)
 
-btn_sl = tk.Button(right_frame, text="SL", command=lambda: multi_token("CE_Lot2"), bg="pink")
+btn_sl = tk.Button(right_frame, text="SL", command=lambda: run_asyncio_task(manual_sl(action="BNF_PE_SL",value=stopLoss.get())), bg="pink")
 btn_sl.grid(row=8, column=3, padx=10, pady=10)
 
-btn_reset = tk.Button(right_frame, text="RST", command=lambda: multi_token("CE_Lot2_Exit"), bg="blue")
+btn_reset = tk.Button(right_frame, text="RST", command=lambda: run_asyncio_task(manual_sl(action="BNF_PE_SL",value="0")), bg="blue")
 btn_reset.grid(row=8, column=4, padx=10, pady=10)
 
 # Run the application
