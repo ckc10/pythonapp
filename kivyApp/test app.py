@@ -1,5 +1,6 @@
 import asyncio
 import aiohttp
+import textwrap
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.label import Label
@@ -11,14 +12,50 @@ from kivy.uix.textinput import TextInput
 # Webhook URL
 WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 
-token1 = "f18769ad-818c-41c6-929d-7f1608730000"
-token2 = "f18769ad-818c-41c6-929d-7f1608730000"
-token3 = "f18769ad-818c-41c6-929d-7f1608730000"
-token4 = "f18769ad-818c-41c6-929d-7f1608730000"
+##---------------Setting up tokens here-------------
+BN_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
+BN_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
+BN_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
+BN_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
 
-tokens = [token1, token2, token3, token4]
+FNFT_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
+FNFT_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
+FNFT_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
+FNFT_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
 
-class BankNiftyClientApp(App):
+NFT_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
+NFT_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
+NFT_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
+NFT_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
+
+MNFT_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
+MNFT_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
+MNFT_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
+MNFT_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
+
+Sensex_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
+Sensex_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
+Sensex_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
+Sensex_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
+
+def setToken(index):
+    tokens =[]
+    if index == 'BNFT':
+        tokens = [BN_token1, BN_token2, BN_token3, BN_token4]
+    elif index == 'NFT':
+        tokens = [NFT_token1, NFT_token2, NFT_token3, NFT_token4]
+    elif index == 'FNFT':
+        tokens = [FNFT_token1, FNFT_token2, FNFT_token3, FNFT_token4]
+    elif index == 'Sensex':
+        tokens = [Sensex_token1, Sensex_token2, Sensex_token3, Sensex_token4]
+    elif index == 'MNFT':
+        tokens = [MNFT_token1, MNFT_token2, MNFT_token3, MNFT_token4]
+
+    return tokens        
+
+
+
+class TradeOption(App):
     response_label_ce_text = StringProperty("")
     response_label_pe_text = StringProperty("")
     stopLoss = ObjectProperty(None)
@@ -56,15 +93,20 @@ class BankNiftyClientApp(App):
         self.response_label_ce_text = response_message
         self.response_label_pe_text = response_message
 
-    async def manual_sl(self, action, value):
+    async def manual_sl(self, action, value,index):
+        tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, value) for token in tokens])
 
-    async def multi_token(self, action):
+    async def multi_token(self, action,index):
+        tokens= setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, "1") for token in tokens])
+            await asyncio.sleep(3)  # Wait for 3 seconds
+            await asyncio.gather(*[self.send_post_request(session, token, action, "0") for token in tokens])
 
-    async def multi_token_reset(self):
+    async def multi_token_reset(self,index):
+        tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.reset_all(token) for token in tokens])
 
@@ -72,10 +114,10 @@ class BankNiftyClientApp(App):
         asyncio.run(task)
 
     def build(self):
-        return BankNiftyClient()
+        return TradeAppUI()
 
-class BankNiftyClient(TabbedPanel):
+class TradeAppUI(TabbedPanel):
     pass
 
 if __name__ == "__main__":
-    BankNiftyClientApp().run()
+    TradeOption().run()

@@ -72,8 +72,8 @@ async def manual_sl(action,value):
 async def multi_token(action):
     async with aiohttp.ClientSession() as session:
         await asyncio.gather(*[send_post_request(session, token, action, "1") for token in tokens])
-        # await asyncio.sleep(3)  # Wait for 5 seconds
-        # await asyncio.gather(*[send_post_request(session, token, action, "0") for token in tokens])
+        await asyncio.sleep(3)  # Wait for 5 seconds
+        await asyncio.gather(*[send_post_request(session, token, action, "0") for token in tokens])
 
     
 
