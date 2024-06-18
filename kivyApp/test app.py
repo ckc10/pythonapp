@@ -8,11 +8,17 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.textinput import TextInput
+from kivy.lang.builder import Builder
 
 # Webhook URL
 WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 
 ##---------------Setting up tokens here-------------
+BN_tokens=[]
+NFT_tokens=[]
+FNFT_tokens=[]
+MNFT_tokens=[]
+Sensex_tokens=[]
 BN_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
 BN_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
 BN_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
@@ -41,15 +47,15 @@ Sensex_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
 def setToken(index):
     tokens =[]
     if index == 'BNFT':
-        tokens = [BN_token1, BN_token2, BN_token3, BN_token4]
+        tokens = BN_tokens
     elif index == 'NFT':
-        tokens = [NFT_token1, NFT_token2, NFT_token3, NFT_token4]
+        tokens = NFT_tokens
     elif index == 'FNFT':
-        tokens = [FNFT_token1, FNFT_token2, FNFT_token3, FNFT_token4]
+        tokens = FNFT_tokens
     elif index == 'Sensex':
-        tokens = [Sensex_token1, Sensex_token2, Sensex_token3, Sensex_token4]
+        tokens = Sensex_tokens
     elif index == 'MNFT':
-        tokens = [MNFT_token1, MNFT_token2, MNFT_token3, MNFT_token4]
+        tokens = MNFT_tokens
 
     return tokens        
 
@@ -58,7 +64,9 @@ def setToken(index):
 class TradeOption(App):
     response_label_ce_text = StringProperty("")
     response_label_pe_text = StringProperty("")
+    response_label_token_text = StringProperty("")
     stopLoss = ObjectProperty(None)
+    
 
     async def send_post_request(self, session, token, action, value):
         data = {
@@ -113,11 +121,37 @@ class TradeOption(App):
     def run_asyncio_task(self, task):
         asyncio.run(task)
 
+    def getTokens(self,tokenvalue,index):
+        if index == 'BNFT':
+            BN_tokens.append(tokenvalue)
+            self.response_label_token_text = f"Token added to Bank Nifty token array"
+            self.root.ids.bnf_token_input.text =''
+            print(BN_tokens)
+        elif index == 'NFT':
+            NFT_tokens.append(tokenvalue)
+            self.response_label_token_text = f"Token added to  Nifty token array"
+            self.root.ids.nft_token_input.text=''
+        elif index == 'FNFT':
+            FNFT_tokens.append(tokenvalue)
+            self.response_label_token_text = f"Token added to Fin Nifty token array"
+            self.root.ids.fnft_token_input.text =''
+        elif index == 'Sensex':
+            Sensex_tokens.append(tokenvalue)
+            self.response_label_token_text = f"Token added to Sensex array"
+            self.root.ids.snx_token_input.text =''
+        elif index == 'MNFT':
+            MNFT_tokens.append(tokenvalue)
+            self.response_label_token_text = f"Token added to Mid Cap Nifty token array"
+            self.root.ids.mnft_token_input.text =''
+            
+
     def build(self):
         return TradeAppUI()
 
 class TradeAppUI(TabbedPanel):
-    pass
+    def build(self):
+        self.root = Builder.load_file("TradeOption.kv")
+        return self.root
 
 if __name__ == "__main__":
     TradeOption().run()
