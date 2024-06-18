@@ -146,6 +146,18 @@
                             text: 'RST'
                             background_color: 0, 0, 1, 1
                             on_release: app.run_asyncio_task(app.manual_sl('BNF_PE_SL', '0'))
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: '48dp'
+                Button:
+                    text: 'Reset'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token_reset())
+                Button:
+                    text: 'U.Exit'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token('UN_Exit'))
 
     TabbedPanelItem:
         text: 'Tab 2'
@@ -158,21 +170,3 @@
         BoxLayout:
             orientation: 'vertical'
             # You can repeat the same structure as Tab 1 for other tabs
-
-BoxLayout:
-    orientation: 'vertical'
-    size: root.width, root.height
-    BankNiftyClient:
-        id: bankniftyclient
-    Button:
-        text: 'Reset'
-        size_hint_y: None
-        height: '48dp'
-        background_color: 0.5, 0.5, 0.5, 1
-        on_release: app.run_asyncio_task(app.multi_token_reset())
-    Button:
-        text: 'U.Exit'
-        size_hint_y: None
-        height: '48dp'
-        background_color: 0.5, 0.5, 0.5, 1
-        on_release: app.run_asyncio_task(app.multi_token('UN_Exit'))
