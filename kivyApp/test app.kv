@@ -12,52 +12,61 @@
                         text: 'CALL'
                         font_size: '14sp'
                         bold: True
-                    Button:
-                        text: 'Buy'
-                        background_color: 0, 1, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('Buy_CE'))
-                    Button:
-                        text: 'SL'
-                        background_color: 1, 0, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('Sell_CE'))
-                    Button:
-                        text: 'S1'
-                        background_color: 1, 0.5, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1'))
-                    Button:
-                        text: 'S2'
-                        background_color: 1, 0.5, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2'))
-                    Button:
-                        text: 'S3'
-                        background_color: 1, 0.5, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3'))
-                    Button:
-                        text: 'EXIT'
-                        background_color: 0, 0, 1, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Exit'))
-                    Button:
-                        text: 'LT+1'
-                        background_color: 1, 1, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Lot1'))
-                    Button:
-                        text: 'EXIT LT1'
-                        background_color: 0, 0, 1, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit'))
-                    Button:
-                        text: 'LT+2'
-                        background_color: 1, 1, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Lot2'))
-                    Button:
-                        text: 'EXIT LT2'
-                        background_color: 0, 0, 1, 1
-                        on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit'))
-                    Label:
-                        text: app.response_label_ce_text
-                        color: 0, 0, 1, 1
-                        text_size: self.width, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_CE'))
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_CE'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1'))
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2'))
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3'))
+                    BoxLayout:
+                        orientation: 'horizontal'
                         size_hint_y: None
-                        height: self.texture_size[1]
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Exit'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1'))
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2'))
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit'))
                     BoxLayout:
                         orientation: 'horizontal'
                         Label:
@@ -76,58 +85,73 @@
                             text: 'RST'
                             background_color: 0, 0, 1, 1
                             on_release: app.run_asyncio_task(app.manual_sl('BNF_CE_SL', '0'))
+                    Label:
+                        text: app.response_label_ce_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
                 BoxLayout:
                     orientation: 'vertical'
                     Label:
                         text: 'PUT'
                         font_size: '14sp'
                         bold: True
-                    Button:
-                        text: 'Buy'
-                        background_color: 0, 1, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('Buy_PE'))
-                    Button:
-                        text: 'SL'
-                        background_color: 1, 0, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('Sell_PE'))
-                    Button:
-                        text: 'S1'
-                        background_color: 1, 0.5, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1'))
-                    Button:
-                        text: 'S2'
-                        background_color: 1, 0.5, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2'))
-                    Button:
-                        text: 'S3'
-                        background_color: 1, 0.5, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3'))
-                    Button:
-                        text: 'EXIT'
-                        background_color: 0, 0, 1, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Exit'))
-                    Button:
-                        text: 'LT+1'
-                        background_color: 1, 1, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Lot1'))
-                    Button:
-                        text: 'EXIT LT1'
-                        background_color: 0, 0, 1, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit'))
-                    Button:
-                        text: 'LT+2'
-                        background_color: 1, 1, 0, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Lot2'))
-                    Button:
-                        text: 'EXIT LT2'
-                        background_color: 0, 0, 1, 1
-                        on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit'))
-                    Label:
-                        text: app.response_label_pe_text
-                        color: 0, 0, 1, 1
-                        text_size: self.width, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_PE'))
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_PE'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1'))
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2'))
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3'))
+                    BoxLayout:
+                        orientation: 'horizontal'
                         size_hint_y: None
-                        height: self.texture_size[1]
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Exit'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1'))
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2'))
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit'))
                     BoxLayout:
                         orientation: 'horizontal'
                         Label:
@@ -146,6 +170,12 @@
                             text: 'RST'
                             background_color: 0, 0, 1, 1
                             on_release: app.run_asyncio_task(app.manual_sl('BNF_PE_SL', '0'))
+                    Label:
+                        text: app.response_label_pe_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint_y: None
