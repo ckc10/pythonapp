@@ -13,7 +13,7 @@
                     size_hint: None, None
                 TextInput:
                     id: bnf_token_input
-                    text: 'Enter API Token here'
+                    hint_text: 'Enter API Token here'
                     size: 300, 50
                     size_hint: None, None
                 Button:
@@ -31,7 +31,7 @@
                     size_hint: None, None
                 TextInput:
                     id: nft_token_input
-                    text: 'Enter API Token here'
+                    hint_text: 'Enter API Token here'
                     size: 300, 50
                     size_hint: None, None
                 Button:
@@ -49,7 +49,7 @@
                     size_hint: None, None
                 TextInput:
                     id: fnft_token_input
-                    text: 'Enter API Token here'
+                    hint_text: 'Enter API Token here'
                     size: 300, 50
                     size_hint: None, None
                 Button:
@@ -67,7 +67,7 @@
                     size_hint: None, None
                 TextInput:
                     id: mnft_token_input
-                    text: 'Enter API Token here'
+                    hint_text: 'Enter API Token here'
                     size: 300, 50
                     size_hint: None, None
                 Button:
@@ -85,7 +85,7 @@
                     size_hint: None, None
                 TextInput:
                     id: snx_token_input
-                    text: 'Enter API Token here'
+                    hint_text: 'Enter API Token here'
                     size: 300, 50
                     size_hint: None, None
                 Button:
@@ -195,14 +195,14 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: ce_sl_input
-                            text: str(app.stopLoss)
+                            id: bnce_sl_input
+                            hint_text:'Enter SL'
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('BNF_CE_SL', ce_sl_input.text,index='BNFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('BNF_CE_SL', bnce_sl_input.text,index='BNFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -304,14 +304,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: pe_sl_input
-                            text: str(app.stopLoss)
+                            id: bnpe_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('BNF_PE_SL', pe_sl_input.text,index='BNFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('BNF_PE_SL', bnpe_sl_input.text,index='BNFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -434,14 +433,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: ce_sl_input
-                            text: str(app.stopLoss)
+                            id: nfce_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_CE_SL', ce_sl_input.text,index='NFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_CE_SL', nfce_sl_input.text,index='NFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -543,14 +541,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: pe_sl_input
-                            text: str(app.stopLoss)
+                            id: nfpe_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_PE_SL', pe_sl_input.text,index='NFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_PE_SL', nfpe_sl_input.text,index='NFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -672,14 +669,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: ce_sl_input
-                            text: str(app.stopLoss)
+                            id: fnce_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('FIN_CE_SL', ce_sl_input.text,index='FNFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('FIN_CE_SL', fnce_sl_input.text,index='FNFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -781,14 +777,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: pe_sl_input
-                            text: str(app.stopLoss)
+                            id: fnpe_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('FIN_PE_SL', pe_sl_input.text,index='FNFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('FIN_PE_SL', fnpe_sl_input.text,index='FNFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -910,14 +905,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: ce_sl_input
-                            text: str(app.stopLoss)
+                            id: mnce_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_CE_SL', ce_sl_input.text,index='MNFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_CE_SL', mnce_sl_input.text,index='MNFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -1019,14 +1013,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: pe_sl_input
-                            text: str(app.stopLoss)
+                            id: mnpe_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_PE_SL', pe_sl_input.text,index='MNFT'))
+                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_PE_SL', mnpe_sl_input.text,index='MNFT'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -1148,14 +1141,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: ce_sl_input
-                            text: str(app.stopLoss)
+                            id: snxce_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('SENX_CE_SL', ce_sl_input.text,index='Sensex'))
+                            on_release: app.run_asyncio_task(app.manual_sl('SENX_CE_SL', snxce_sl_input.text,index='Sensex'))
                             size: 150, 80
                             size_hint: None, None
                         Button:
@@ -1257,14 +1249,13 @@
                             size: 100, 80
                             size_hint: None, None
                         TextInput:
-                            id: pe_sl_input
-                            text: str(app.stopLoss)
+                            id: snxpe_sl_input
                             size: 150, 80
                             size_hint: None, None
                         Button:
                             text: 'SL'
                             background_color: 1, 0.75, 0.8, 1
-                            on_release: app.run_asyncio_task(app.manual_sl('SENX_PE_SL', pe_sl_input.text,index='Sensex'))
+                            on_release: app.run_asyncio_task(app.manual_sl('SENX_PE_SL', snxpe_sl_input.text,index='Sensex'))
                             size: 150, 80
                             size_hint: None, None
                         Button:

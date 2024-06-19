@@ -101,6 +101,7 @@ class TradeOption(App):
         self.response_label_ce_text = response_message
         self.response_label_pe_text = response_message
 
+#app.run_asyncio_task(app.manual_sl('BNF_CE_SL', ce_sl_input.text,index='BNFT'))
     async def manual_sl(self, action, value,index):
         tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
