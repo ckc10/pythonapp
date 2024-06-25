@@ -1,6 +1,7 @@
 import asyncio
 import aiohttp
 import textwrap
+import datetime
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.label import Label
@@ -18,6 +19,7 @@ BN_tokens=[]
 NFT_tokens=[]
 FNFT_tokens=[]
 MNFT_tokens=[]
+HeroZero_tokens=[]
 Sensex_tokens=[]
 BN_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
 BN_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
@@ -58,6 +60,51 @@ def setToken(index):
         tokens = MNFT_tokens
 
     return tokens        
+
+def checkExpiry():
+    # 0=Monday
+    today = datetime.date.today().weekday
+    if today == 0 :
+        index = 'MNFT'
+    elif today == 1:
+        index = 'FNFT'
+    elif today == 2:
+        index = 'BNFT'
+    elif today == 3:
+        index = 'NFT'
+    elif today == 4:
+        index = 'Sensex'
+    
+    return index
+
+def checkIndex(index):
+    if index == 'BNFT' and action == 'HeroZeroCE':
+        action = 'BNF_CE_SL'
+    else:
+        action = 'BNF_PE_SL'    
+
+    if index == 'NFT' and action =='HeroZeroCE':
+        action = 'NFT50_CE_SL'
+    else: 
+        acton = 'NFT50_PE_SL'
+
+    if index == 'FNFT' and action == 'HeroZeroCE':
+        action  = 'FIN_CE_SL'
+    else:
+        action = 'FIN_PE_SL'
+
+    if index == 'Sensex' and action =='HeroZeroCE':
+        action = 'SENX_CE_SL'
+    else :
+        action = 'SENX_PE_SL'
+
+    if index == 'MNFT' and action == 'HeroZeroCE':
+        action = 'MIDNIFT_CE_SL'
+    else :
+        action = 'MIDNIFT_PE_SL'
+
+    return action        
+
 
 
 
@@ -103,11 +150,18 @@ class TradeOption(App):
 
 #app.run_asyncio_task(app.manual_sl('BNF_CE_SL', ce_sl_input.text,index='BNFT'))
     async def manual_sl(self, action, value,index):
+        if index == 'HeroZero':
+            index = checkExpiry()
+            action = checkIndex(index)
+
         tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, value) for token in tokens])
 
     async def multi_token(self, action,index):
+        if index == 'HeroZero':
+            index = checkExpiry()
+
         tokens= setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, "1") for token in tokens])
@@ -115,6 +169,9 @@ class TradeOption(App):
             await asyncio.gather(*[self.send_post_request(session, token, action, "0") for token in tokens])
 
     async def multi_token_reset(self,index):
+        if index == 'HeroZero':
+            index = checkExpiry()
+            
         tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.reset_all(token) for token in tokens])
@@ -144,7 +201,10 @@ class TradeOption(App):
             MNFT_tokens.append(tokenvalue)
             self.response_label_token_text = f"Token added to Mid Cap Nifty token array"
             self.root.ids.mnft_token_input.text =''
-            
+        elif index == 'HeroZero':
+            HeroZero_tokens.append(tokenvalue)
+            self.response_label_token_text = f"Token added to HEroZero token array"
+            self.root.ids.hz_token_input.text =''    
 
     def build(self):
         return TradeAppUI()
