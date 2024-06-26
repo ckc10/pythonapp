@@ -22,29 +22,6 @@ MNFT_tokens=[]
 HeroZero_tokens=[]
 Sensex_tokens=[]
 BN_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
-BN_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
-BN_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
-BN_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
-
-FNFT_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
-FNFT_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
-FNFT_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
-FNFT_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
-
-NFT_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
-NFT_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
-NFT_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
-NFT_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
-
-MNFT_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
-MNFT_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
-MNFT_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
-MNFT_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
-
-Sensex_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
-Sensex_token2 = "f18769ad-818c-41c6-929d-7f1608730000"
-Sensex_token3 = "f18769ad-818c-41c6-929d-7f1608730000"
-Sensex_token4 = "f18769ad-818c-41c6-929d-7f1608730000"
 
 def setToken(index):
     tokens =[]
@@ -112,7 +89,7 @@ class TradeOption(App):
     response_label_ce_text = StringProperty("")
     response_label_pe_text = StringProperty("")
     response_label_token_text = StringProperty("")
-    stopLoss = ObjectProperty(None)
+    
     
 
     async def send_post_request(self, session, token, action, value):
@@ -171,7 +148,7 @@ class TradeOption(App):
     async def multi_token_reset(self,index):
         if index == 'HeroZero':
             index = checkExpiry()
-            
+
         tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.reset_all(token) for token in tokens])
