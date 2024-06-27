@@ -1,0 +1,1288 @@
+<TradeAppUI>:
+    do_default_tab: False
+    TabbedPanelItem:
+        text: 'Token Setup'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for Banknifty'
+                    font_size: '15sp'
+                    size: 400, 20
+                    size_hint: None, None
+                TextInput:
+                    id: bnf_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(bnf_token_input.text,index='BNFT')
+                    size: 150, 50
+                    size_hint: None, None
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for Nifty'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: nft_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(nft_token_input.text,index='NFT')
+                    size: 150, 50
+                    size_hint: None, None       
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for FinNifty'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: fnft_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(fnft_token_input.text,index='FNFT')
+                    size: 150, 50
+                    size_hint: None, None       
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for MidNifty'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: mnft_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(mnft_token_input.text,index='MNFT')
+                    size: 150, 50
+                    size_hint: None, None       
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for Sensex'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: snx_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(snx_token_input.text,index='Sensex')
+                    size: 150, 50
+                    size_hint: None, None
+                                
+            Label:
+                text: app.response_label_token_text
+                color: 0, 0, 1, 1
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]                                           
+                      
+
+
+
+    TabbedPanelItem:
+        text: 'BankNifty'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'CALL'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_CE',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_CE',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.8}
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Exit',index='BNFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'BNIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: bnce_sl_input
+                            hint_text:'Enter SL'
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('BNF_CE_SL', bnce_sl_input.text,index='BNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('BNF_CE_SL', '0',index='BNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_ce_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'PUT'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_PE',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_PE',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Exit',index='BNFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit',index='BNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'BNIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: bnpe_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('BNF_PE_SL', bnpe_sl_input.text,index='BNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('BNF_PE_SL', '0',index='BNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_pe_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: '48dp'
+                Button:
+                    text: 'Reset'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token_reset(index='BNFT'))
+                    
+                Button:
+                    text: 'U.Exit'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token('UN_Exit',index='BNFT'))
+                    
+
+    TabbedPanelItem:
+        text: 'Nifty'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'CALL'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_CE',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_CE',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.8}
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Exit',index='NFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'NIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: nfce_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_CE_SL', nfce_sl_input.text,index='NFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_CE_SL', '0',index='NFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_ce_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'PUT'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_PE',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_PE',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Exit',index='NFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit',index='NFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'NIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: nfpe_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_PE_SL', nfpe_sl_input.text,index='NFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('NFT50_PE_SL', '0',index='NFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_pe_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: '48dp'
+                Button:
+                    text: 'Reset'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token_reset(index='NFT'))
+                    
+                Button:
+                    text: 'U.Exit'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token('UN_Exit',index='NFT'))
+
+    TabbedPanelItem:
+        text: 'FinNifty'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'CALL'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_CE',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_CE',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.8}
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Exit',index='FNFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'F.NIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: fnce_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('FIN_CE_SL', fnce_sl_input.text,index='FNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('FIN_CE_SL', '0',index='FNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_ce_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'PUT'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_PE',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_PE',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Exit',index='FNFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit',index='FNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'F.NIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: fnpe_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('FIN_PE_SL', fnpe_sl_input.text,index='FNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('FIN_PE_SL', '0',index='FNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_pe_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: '48dp'
+                Button:
+                    text: 'Reset'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token_reset(index='FNFT'))
+                    
+                Button:
+                    text: 'U.Exit'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token('UN_Exit',index='FNFT'))
+    
+    TabbedPanelItem:
+        text: 'MidNifty'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'CALL'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_CE',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_CE',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.8}
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Exit',index='MNFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'M.NIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: mnce_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_CE_SL', mnce_sl_input.text,index='MNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_CE_SL', '0',index='MNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_ce_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'PUT'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_PE',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_PE',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Exit',index='MNFT'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit',index='MNFT'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'M.NIFTY'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: mnpe_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_PE_SL', mnpe_sl_input.text,index='MNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('MIDNIFT_PE_SL', '0',index='MNFT'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_pe_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: '48dp'
+                Button:
+                    text: 'Reset'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token_reset(index='MNFT'))
+                    
+                Button:
+                    text: 'U.Exit'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token('UN_Exit',index='MNFT'))
+
+    TabbedPanelItem:
+        text: 'Sensex'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'CALL'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_CE',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_CE',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_1',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_2',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Sell_3',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.8}
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Exit',index='Sensex'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot1_Exit',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('CE_Lot2_Exit',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'SENSEX'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: snxce_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('SENX_CE_SL', snxce_sl_input.text,index='Sensex'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('SENX_CE_SL', '0',index='Sensex'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_ce_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'PUT'
+                        font_size: '14sp'
+                        bold: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'Buy'
+                            background_color: 0, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Buy_PE',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('Sell_PE',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'S1'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_1',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S2'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_2',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'S3'
+                            background_color: 1, 0.5, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Sell_3',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: '48dp'
+                        Button:
+                            text: 'EXIT'
+                            background_color: 0, 0, 1, 1
+                            size_hint_x: None
+                            width: 200
+                            pos_hint: {'center_x': 0.5}
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Exit',index='Sensex'))
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+1'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT1'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot1_Exit',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Button:
+                            text: 'LT+2'
+                            background_color: 1, 1, 0, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'EXIT LT2'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.multi_token('PE_Lot2_Exit',index='Sensex'))
+                            size: 200, 80
+                            size_hint: None, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: 'SENSEX'
+                            font_size: '15sp'
+                            size: 100, 80
+                            size_hint: None, None
+                        TextInput:
+                            id: snxpe_sl_input
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'SL'
+                            background_color: 1, 0.75, 0.8, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('SENX_PE_SL', snxpe_sl_input.text,index='Sensex'))
+                            size: 150, 80
+                            size_hint: None, None
+                        Button:
+                            text: 'RST'
+                            background_color: 0, 0, 1, 1
+                            on_release: app.run_asyncio_task(app.manual_sl('SENX_PE_SL', '0',index='Sensex'))
+                            size: 150, 80
+                            size_hint: None, None
+                    Label:
+                        text: app.response_label_pe_text
+                        color: 0, 0, 1, 1
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: '48dp'
+                Button:
+                    text: 'Reset'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token_reset(index='Sensex'))
+                    
+                Button:
+                    text: 'U.Exit'
+                    background_color: 0.5, 0.5, 0.5, 1
+                    on_release: app.run_asyncio_task(app.multi_token('UN_Exit',index='Sensex'))
