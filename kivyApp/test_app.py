@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 import textwrap
 import datetime
+import json
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.label import Label
@@ -10,17 +11,18 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.textinput import TextInput
 from kivy.lang.builder import Builder
+from kivy.uix.filechooser import FileChooserListView
 
 # Webhook URL
 WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 
 ##---------------Setting up tokens here-------------
-BN_tokens=[]
-NFT_tokens=[]
-FNFT_tokens=[]
-MNFT_tokens=[]
-HeroZero_tokens=[]
-Sensex_tokens=[]
+# BN_tokens=[]
+# NFT_tokens=[]
+# FNFT_tokens=[]
+# MNFT_tokens=[]
+# HeroZero_tokens=[]
+# Sensex_tokens=[]
 BN_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
 
 def setToken(index):
@@ -140,6 +142,7 @@ class TradeOption(App):
             index = checkExpiry()
 
         tokens= setToken(index)
+        print(tokens)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, "1") for token in tokens])
             await asyncio.sleep(3)  # Wait for 3 seconds
@@ -182,6 +185,29 @@ class TradeOption(App):
             HeroZero_tokens.append(tokenvalue)
             self.response_label_token_text = f"Token added to HEroZero token array"
             self.root.ids.hz_token_input.text =''    
+
+    def load_json(self, path, filename):
+        if filename:
+            filepath = filename[0]  #path + '/' + 
+            self.process_json_file(filepath)
+
+    def process_json_file(self, filepath):
+        global BN_tokens, NFT_tokens, FNFT_tokens, Sensex_tokens, MNFT_tokens, HeroZero_tokens
+        with open(filepath, 'r') as file:
+            try:
+                data = json.load(file)
+                BN_tokens = data.get('BNFT', [])
+                NFT_tokens = data.get('NFT', [])
+                FNFT_tokens = data.get('FNFT', [])
+                Sensex_tokens = data.get('Sensex', [])
+                MNFT_tokens = data.get('MNFT', [])
+                self.response_label_token_text = "Tokens loaded from JSON file successfully."
+                self.root.ids.token_label.text=f'Loaded tokens from file are\nBNFT:{BN_tokens}\nNFT:{NFT_tokens}\nFNFT:{FNFT_tokens}\nMNFT:{MNFT_tokens}\nSensex:{Sensex_tokens}'
+            except json.JSONDecodeError as e:
+                self.response_label_token_text = f"Error loading JSON file: {e}"
+
+    
+        self.response_label_token_text = "Tokens loaded from JSON file."
 
     def build(self):
         return TradeAppUI()

@@ -4,24 +4,126 @@
         text: 'Token Setup'
         BoxLayout:
             orientation: 'vertical'
-            FileChooserListView:
-                id: filechooser  # Add an ID to reference in Python
-                filters: ['*.json']  # Filter only JSON files
             BoxLayout:
                 orientation: 'horizontal'
                 Button:
                     text: 'Load Tokens from JSON'
                     background_color: 0.5, 0.5, 1, 1
-                    on_release: app.load_json(filechooser.path, filechooser.selection)
+                    on_release: app.load_tokens_from_json()
                     size: 400, 50
                     size_hint: None, None
                 Label:
-                    id:token_label
                     text: ''
-                    text_size: self.width, None
-                    size_hint_y: None
-                    height: self.texture_size[1] 
-                               
+                    size: 400, 50
+                    size_hint: None, None
+            BoxLayout:
+                orientation: 'horizontal'     
+                Label:
+                    text: 'Token for Banknifty'
+                    font_size: '15sp'
+                    size: 400, 20
+                    size_hint: None, None
+                TextInput:
+                    id: bnf_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(bnf_token_input.text,index='BNFT')
+                    size: 150, 50
+                    size_hint: None, None
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for Nifty'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: nft_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(nft_token_input.text,index='NFT')
+                    size: 150, 50
+                    size_hint: None, None       
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for FinNifty'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: fnft_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(fnft_token_input.text,index='FNFT')
+                    size: 150, 50
+                    size_hint: None, None       
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for MidNifty'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: mnft_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(mnft_token_input.text,index='MNFT')
+                    size: 150, 50
+                    size_hint: None, None       
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for Sensex'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: snx_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(snx_token_input.text,index='Sensex')
+                    size: 150, 50
+                    size_hint: None, None
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Token for HeroZero'
+                    font_size: '15sp'
+                    size: 400, 80
+                    size_hint: None, None
+                TextInput:
+                    id: hz_token_input
+                    hint_text: 'Enter API Token here'
+                    size: 300, 50
+                    size_hint: None, None
+                Button:
+                    text: 'Add'
+                    background_color: 1, 0.75, 0.8, 1
+                    on_release: app.getTokens(hz_token_input.text,index='HeroZero')
+                    size: 150, 50
+                    size_hint: None, None                               
             Label:
                 text: app.response_label_token_text
                 color: 0, 0, 1, 1
