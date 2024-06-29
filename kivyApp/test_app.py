@@ -1,29 +1,20 @@
 import asyncio
 import aiohttp
 import textwrap
-import datetime
 import json
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.uix.label import Label
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import StringProperty, ObjectProperty
-from kivy.uix.textinput import TextInput
+# from kivy.uix.label import Label
+# from kivy.uix.button import Button
+# from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import StringProperty
+# from kivy.uix.textinput import TextInput
 from kivy.lang.builder import Builder
-from kivy.uix.filechooser import FileChooserListView
+# from kivy.uix.filechooser import FileChooserIconView
 
 # Webhook URL
 WEBHOOK_URL = 'https://api.tradetron.tech/api/'
 
-##---------------Setting up tokens here-------------
-# BN_tokens=[]
-# NFT_tokens=[]
-# FNFT_tokens=[]
-# MNFT_tokens=[]
-# HeroZero_tokens=[]
-# Sensex_tokens=[]
-BN_token1 = "f18769ad-818c-41c6-929d-7f1608730000"
 
 def setToken(index):
     tokens =[]
@@ -40,53 +31,8 @@ def setToken(index):
 
     return tokens        
 
-def checkExpiry():
-    # 0=Monday
-    today = datetime.date.today().weekday
-    if today == 0 :
-        index = 'MNFT'
-    elif today == 1:
-        index = 'FNFT'
-    elif today == 2:
-        index = 'BNFT'
-    elif today == 3:
-        index = 'NFT'
-    elif today == 4:
-        index = 'Sensex'
-    
-    return index
 
-def checkIndex(index):
-    if index == 'BNFT' and action == 'HeroZeroCE':
-        action = 'BNF_CE_SL'
-    else:
-        action = 'BNF_PE_SL'    
-
-    if index == 'NFT' and action =='HeroZeroCE':
-        action = 'NFT50_CE_SL'
-    else: 
-        acton = 'NFT50_PE_SL'
-
-    if index == 'FNFT' and action == 'HeroZeroCE':
-        action  = 'FIN_CE_SL'
-    else:
-        action = 'FIN_PE_SL'
-
-    if index == 'Sensex' and action =='HeroZeroCE':
-        action = 'SENX_CE_SL'
-    else :
-        action = 'SENX_PE_SL'
-
-    if index == 'MNFT' and action == 'HeroZeroCE':
-        action = 'MIDNIFT_CE_SL'
-    else :
-        action = 'MIDNIFT_PE_SL'
-
-    return action        
-
-
-
-
+  
 class TradeOption(App):
     response_label_ce_text = StringProperty("")
     response_label_pe_text = StringProperty("")
@@ -129,29 +75,19 @@ class TradeOption(App):
 
 #app.run_asyncio_task(app.manual_sl('BNF_CE_SL', ce_sl_input.text,index='BNFT'))
     async def manual_sl(self, action, value,index):
-        if index == 'HeroZero':
-            index = checkExpiry()
-            action = checkIndex(index)
-
         tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, value) for token in tokens])
 
     async def multi_token(self, action,index):
-        if index == 'HeroZero':
-            index = checkExpiry()
-
         tokens= setToken(index)
-        print(tokens)
+        
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.send_post_request(session, token, action, "1") for token in tokens])
             await asyncio.sleep(3)  # Wait for 3 seconds
             await asyncio.gather(*[self.send_post_request(session, token, action, "0") for token in tokens])
 
     async def multi_token_reset(self,index):
-        if index == 'HeroZero':
-            index = checkExpiry()
-
         tokens = setToken(index)
         async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[self.reset_all(token) for token in tokens])
@@ -159,32 +95,32 @@ class TradeOption(App):
     def run_asyncio_task(self, task):
         asyncio.run(task)
 
-    def getTokens(self,tokenvalue,index):
-        if index == 'BNFT':
-            BN_tokens.append(tokenvalue)
-            self.response_label_token_text = f"Token added to Bank Nifty token array"
-            self.root.ids.bnf_token_input.text =''
-            print(BN_tokens)
-        elif index == 'NFT':
-            NFT_tokens.append(tokenvalue)
-            self.response_label_token_text = f"Token added to  Nifty token array"
-            self.root.ids.nft_token_input.text=''
-        elif index == 'FNFT':
-            FNFT_tokens.append(tokenvalue)
-            self.response_label_token_text = f"Token added to Fin Nifty token array"
-            self.root.ids.fnft_token_input.text =''
-        elif index == 'Sensex':
-            Sensex_tokens.append(tokenvalue)
-            self.response_label_token_text = f"Token added to Sensex array"
-            self.root.ids.snx_token_input.text =''
-        elif index == 'MNFT':
-            MNFT_tokens.append(tokenvalue)
-            self.response_label_token_text = f"Token added to Mid Cap Nifty token array"
-            self.root.ids.mnft_token_input.text =''
-        elif index == 'HeroZero':
-            HeroZero_tokens.append(tokenvalue)
-            self.response_label_token_text = f"Token added to HEroZero token array"
-            self.root.ids.hz_token_input.text =''    
+    # def getTokens(self,tokenvalue,index):
+    #     if index == 'BNFT':
+    #         BN_tokens.append(tokenvalue)
+    #         self.response_label_token_text = f"Token added to Bank Nifty token array"
+    #         self.root.ids.bnf_token_input.text =''
+    #         print(BN_tokens)
+    #     elif index == 'NFT':
+    #         NFT_tokens.append(tokenvalue)
+    #         self.response_label_token_text = f"Token added to  Nifty token array"
+    #         self.root.ids.nft_token_input.text=''
+    #     elif index == 'FNFT':
+    #         FNFT_tokens.append(tokenvalue)
+    #         self.response_label_token_text = f"Token added to Fin Nifty token array"
+    #         self.root.ids.fnft_token_input.text =''
+    #     elif index == 'Sensex':
+    #         Sensex_tokens.append(tokenvalue)
+    #         self.response_label_token_text = f"Token added to Sensex array"
+    #         self.root.ids.snx_token_input.text =''
+    #     elif index == 'MNFT':
+    #         MNFT_tokens.append(tokenvalue)
+    #         self.response_label_token_text = f"Token added to Mid Cap Nifty token array"
+    #         self.root.ids.mnft_token_input.text =''
+    #     elif index == 'HeroZero':
+    #         HeroZero_tokens.append(tokenvalue)
+    #         self.response_label_token_text = f"Token added to HEroZero token array"
+    #         self.root.ids.hz_token_input.text =''    
 
     def load_json(self, path, filename):
         if filename:
@@ -192,7 +128,7 @@ class TradeOption(App):
             self.process_json_file(filepath)
 
     def process_json_file(self, filepath):
-        global BN_tokens, NFT_tokens, FNFT_tokens, Sensex_tokens, MNFT_tokens, HeroZero_tokens
+        global BN_tokens, NFT_tokens, FNFT_tokens, Sensex_tokens, MNFT_tokens
         with open(filepath, 'r') as file:
             try:
                 data = json.load(file)
